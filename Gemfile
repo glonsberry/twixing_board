@@ -27,12 +27,11 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring'
 gem 'sorcery'
 gem 'skeleton-rails'
-
-
-  gem 'rspec-rails'
-  gem 'guard'
-  gem 'guard-rspec'
-  gem 'pry'
+gem 'rspec-rails'
+gem 'guard'
+gem 'guard-rspec'
+gem 'pry'
+# gem 'alchemy-api-rb', :require => 'alchemy_api'
 
 
 
