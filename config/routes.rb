@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get 'signup' => 'twixers#new', as: 'signup'
   post 'twixers' => 'twixers#create', as: 'twixers'
   
+  get '/profile' => 'twixers#profile', as: 'profile'  
+  
   root 'welcome#index'
 end
 
