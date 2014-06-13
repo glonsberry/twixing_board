@@ -1,7 +1,7 @@
 class CreateTwixNotes < ActiveRecord::Migration
   def change
-    create_table :twix_notes do |t|
-      t.integer :tweet_id
+    create_table :twixnotes do |t|
+    
       t.integer :frequency
 
       t.timestamps

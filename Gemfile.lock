@@ -188,7 +188,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   pg
-  pry
+  pry (~> 0.9.12)
   pry-nav
   rails (= 4.1.1)
   rails_12factor

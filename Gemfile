@@ -45,7 +45,7 @@ group :production do
 end
 
 group :development, :test do 
-  gem 'pry'
+  gem 'pry', '~> 0.9.12'
   gem 'pry-nav'
   gem 'rspec-rails'
 end
