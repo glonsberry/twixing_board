@@ -19,6 +19,22 @@ RSpec.describe Twixer, :type => :model do
     expect(@twixer.email).to eq 'gardnernew@gardner.com'
   end
 
+  it "can create a new Twixing Board" do
+    twixer.twixingboard = Twixingboard.new
+  end
 end
 
+
+# RSpec.describe Twixing_Board, :type => :model do
+#   before :each do
+#     @twixing_board = Twixing_Board.new(user_id: "1", twix_notes: "123", board_id: "2")
+#   end
+
+#   it "starts with 0 twit_notes" do
+#       @twixing_board.should have(0).twix_notes
+#     end
+#   it "can get accept new twix_notes" do
+#       @twixing_board.twix_notes << Object.new
+#     end  
+# end
 
