@@ -1,0 +1,3 @@
+class TwixnotesController < ApplicationController
+
+end

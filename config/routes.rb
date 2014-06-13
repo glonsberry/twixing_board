@@ -10,5 +10,9 @@ Rails.application.routes.draw do
   get '/profile' => 'twixers#profile', as: 'profile'  
   
   root 'welcome#index'
+
+  get '/twixingboard' =>'twixingboards#index'
+  get '/twixingboards/search' => 'twixingboards#results'
+
 end
 

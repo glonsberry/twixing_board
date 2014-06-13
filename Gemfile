@@ -38,6 +38,7 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem 'sorcery'
+gem 'twitter'
 
 group :production do
   gem 'rails_12factor'
@@ -47,6 +48,4 @@ group :development, :test do
   gem 'pry'
   gem 'pry-nav'
   gem 'rspec-rails'
-
-
 end
