@@ -18,6 +18,7 @@ class TwixersController < ApplicationController
   def profile
   end
 
+private
   def twixer_params
     params.require(:twixer).permit(:email, :password)
   end

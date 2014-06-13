@@ -1,12 +1,11 @@
 class SessionsController < ApplicationController
 
   def new # login-form
-    @twixer = Twixer.new
   end
 
   def create # login
-    @twixer = login([:email], params[:password])
-  if wizard
+    twixer = login(params[:email], params[:password])
+  if twixer
     redirect_to root_path
   else
     render :new
