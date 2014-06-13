@@ -1,0 +1,11 @@
+<h1> the board goes here </h1>
+<p>Twixingboard name: <%=@twixingboard.name %></p>
+
+<form method="get" action="/twixingboards/<%= @twixingboard.id%>/show">
+  <input type="textfield" placeholder="hashtag search..." name="search_term">
+  <button type="submit">Search</button>
+</form>
+
+<% unless @results.nil? %>
+  tweets per second = <%= @results %>
+<% end %>
