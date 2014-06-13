@@ -27,14 +27,27 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring'
 gem 'sorcery'
 gem 'skeleton-rails'
-gem 'rspec-rails'
-gem 'guard'
-gem 'guard-rspec'
-gem 'pry'
-# gem 'alchemy-api-rb', :require => 'alchemy_api'
 
 
 
 
 
+
+
+
+# Use debugger
+# gem 'debugger', group: [:development, :test]
+gem 'twitter'
+
+group :production do
+  gem 'rails_12factor'
+end
+
+group :development, :test do 
+  gem 'pry', '~> 0.9.12'
+  gem 'pry-nav'
+  gem 'rspec-rails'
+  gem 'guard'
+  gem 'guard-rspec'
+end
 
