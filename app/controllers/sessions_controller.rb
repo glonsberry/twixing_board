@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   def create # login
     twixer = login(params[:email], params[:password])
   if twixer
-    redirect_to root_path
+    redirect_to profile_path
   else
     render :new
   end
