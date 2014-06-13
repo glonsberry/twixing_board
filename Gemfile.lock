@@ -100,6 +100,7 @@ GEM
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
+    skeleton-rails (0.1.0)
     sorcery (0.8.5)
       bcrypt-ruby (>= 3.0)
       oauth (~> 0.4.4)
@@ -139,6 +140,7 @@ DEPENDENCIES
   rails (= 4.1.1)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
+  skeleton-rails
   sorcery
   spring
   turbolinks
