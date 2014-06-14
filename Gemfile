@@ -27,7 +27,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring'
 gem 'sorcery'
 gem 'skeleton-rails'
-
+gem 'jquery-ui-rails'
 
 
 
