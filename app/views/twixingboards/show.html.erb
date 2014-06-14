@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<h1> the board goes here </h1>
+<p>Twixingboard name: <%=@twixingboard.name %></p>
+<% unless @results.nil? %>
+  tweets per second = <%= @results %>
+<% end %>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -12,20 +18,18 @@
     <div id="volume"></div>
   </div>  
 
-<h1> the board goes here </h1>
-<p>Twixingboard name: <%=@twixingboard.name %></p>
 
 <form method="get" action="/twixingboards/<%= @twixingboard.id%>/show">
   <input type="textfield" placeholder="hashtag search..." name="search_term">
   <button type="submit">Search</button>
 </form>
 
-<% unless @results.nil? %>
-  tweets per second = <%= @results %>
-<% end %>
+
 <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 <script src="slider.js" type="text/javascript"></script>
+<embed src="http://www.freesfx.co.uk/rx2/mp3s/9/10716_1378944829.mp3">
+
 </body>
 </html>
 
