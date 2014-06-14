@@ -1,6 +1,9 @@
-<form action="planets/<%= @planet.id %>/moons/<%= @moon.id %>" method="post">
+<h1>Edit Profile</h1>
+
+<form action="/profile/<%= @twixer.id %>" method="post">
   <input type="hidden" name="_method" value="put">
   <% token_tag %>
-<input type="text" name="moon[name]" value="<%= @moon.name %>">
+Email: <input type="text" name="twixers[email]" value="<%= @twixer.email %>">
+Twixboard Name: <input type="text" name="twixingboard[name]" value="<%= @current_twixing_board %>">
 <input type="submit">
 </form>

@@ -27,6 +27,10 @@ class TwixingboardsController < ApplicationController
   
   def search
 
+  def edit
+      @twixingboard = Twixingboard.find(params[:id])
+      @current_twixing_board = current_user.twixingboards.name
+  end
 
 
   end
@@ -38,7 +42,7 @@ class TwixingboardsController < ApplicationController
 
   private
     def twixingboard_params
-      twixingboard_params = params.require(:twixingboard).permit(:name)
+      twixingboard_params = params.require(:twixingboard).permit(:name, :id)
     end
 
 end

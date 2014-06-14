@@ -1,0 +1,5 @@
+KEY1= ENV["TWITTER_API_KEY"]
+
+
+
+@secret = KEY1 || ENV["KEY1"]

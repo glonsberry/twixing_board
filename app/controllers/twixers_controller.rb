@@ -15,10 +15,15 @@ class TwixersController < ApplicationController
     end
   end
 
+  def edit
+    @twixer = Twixer.find(params[:id])
+  end
+
   def profile
   end
 
 private
+
   def twixer_params
     params.require(:twixer).permit(:email, :password)
   end

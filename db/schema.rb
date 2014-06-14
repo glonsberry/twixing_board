@@ -16,6 +16,13 @@ ActiveRecord::Schema.define(version: 20140613183631) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "twix_notes", force: true do |t|
+    t.integer  "tweet_id"
+    t.integer  "frequency"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "twixers", force: true do |t|
     t.string   "email",            null: false
     t.string   "crypted_password", null: false
@@ -30,12 +37,6 @@ ActiveRecord::Schema.define(version: 20140613183631) do
     t.string  "name"
     t.integer "twixnotes_id"
     t.integer "twixer_id"
-  end
-
-  create_table "twixnotes", force: true do |t|
-    t.integer  "frequency"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
 end

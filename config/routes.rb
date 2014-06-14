@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post '/twixers' => 'twixers#create', as: 'twixers'
   
   get '/profile' => 'twixers#profile', as: 'profile'  
-  
+  get '/profile/:id/edit' => 'twixers#edit', as: 'edit'
   root 'welcome#index'
 
   get '/twixingboard' =>'twixingboards#index'
