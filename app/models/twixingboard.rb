@@ -2,6 +2,8 @@ class Twixingboard < ActiveRecord::Base
   has_many :twixnotes
   belongs_to :twixers
 
+  returnArr=[]
+
   def find_frequency(search_term)
     client = Twitter::REST::Client.new do |config|
       config.consumer_key        = ENV['TWITTER_API_KEY']
@@ -16,7 +18,7 @@ class Twixingboard < ActiveRecord::Base
     end
 
     tweets_per_sec = tweetsArr.length/(tweetsArr.first - tweetsArr.last)
-
+    returnArr = [search_term, tweets_per_sec]
 
   end
 

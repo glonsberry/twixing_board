@@ -7,5 +7,6 @@
 </form>
 
 <% unless @results.nil? %>
-  tweets per second = <%= @results %>
+  <span class="twixnote-name"><%= @results[0] %></span>: tweets per second = <span class="twixnote-frequency"><%= @results[1] %></span>
 <% end %>
+<button class="save-twixnote-btn">save</button>

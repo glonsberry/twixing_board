@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   get '/twixingboard' =>'twixingboards#index'
-  get '/twixingboards/:id/show' => 'twixingboards#show'
+  get '/twixingboards/:id/show' => 'twixingboards#show', as: 'show'
 
     resources :twixingboards do
       resources :twixnotes
