@@ -29,7 +29,12 @@ class TwixingboardsController < ApplicationController
 
   def edit
       @twixingboard = Twixingboard.find(params[:id])
-      @current_twixing_board = current_user.twixingboards.name
+  end
+
+  def update
+  twixingboard = Twixingboard.find(params[:id])
+  twixingboard.update(twixingboard_params)
+  redirect_to "/profile/#{ twixer.id }"
   end
 
 

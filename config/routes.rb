@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   
   get '/profile' => 'twixers#profile', as: 'profile'  
   get '/profile/:id/edit' => 'twixers#edit', as: 'edit'
+  put '/profile/:id' => 'twixers#update'
   root 'welcome#index'
 
   get '/twixingboard' =>'twixingboards#index'
