@@ -23,7 +23,6 @@ class TwixingboardsController < ApplicationController
         search_term = params[:search_term]
         @results = @twixingboard.find_frequency(search_term)
       end
-
   end
   
   def search

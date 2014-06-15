@@ -1,5 +1,38 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Twixing Board</title>
+  <link rel="stylesheet" href="slider.css">
+</head>
+
+<body>
+=======
 <h1> twixingboards index</h1>
+>>>>>>> 769f6405938fad2ab5c931bd57ae564e0a7bc4c7
+
+  <div id="player">
+    <div id="volume"></div>
+  </div>  
+
+<h1> the board goes here </h1>
+<p>Twixingboard name: <%=@twixingboard.name %></p>
+
+<form method="get" action="/twixingboards/<%= @twixingboard.id%>/show">
+  <input type="textfield" placeholder="hashtag search..." name="search_term">
+  <button type="submit">Search</button>
+</form>
+
+<% unless @results.nil? %>
+  tweets per second = <%= @results %>
+<% end %>
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<script src="slider.js" type="text/javascript"></script>
+</body>
+</html>
 
 
 
 
+ -->
