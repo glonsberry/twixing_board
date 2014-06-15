@@ -1,28 +1,25 @@
-== README
+I think I have all the create and destroy stuff in the controllers that we'll need.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+There is a function in the scripts.jsthat will save a twixnote in the DB, but you need to 
+refresh the page to see it happen. 
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+To delete a twixnote you'll need a form with a delete button it in.  I'm not sure how to make
+and AJAX request to delete something.  There is a sample form on the twixingboard SHOW view.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Delete form button :
+
+<form action="/twixingboards/<%= @twixingboard.id %>/twixnotes/<%= twixnote.id %>" method="post">
+<%= token_tag %>
+<input type="hidden" name="_method" value="delete">
+<button class="delete-btn" id="<%= twixnote.id %>">delete</button>
+</form>
+
+All the action is in the twixingboards SHOW view.  That's the page where the twixingboard will go.  So work with that view and with the scripts file to do your work.
+
+Right now the search is all on the rails end.  It finds the hashtag, calculates the frequency and returns a @results array.  @results[0] is the name and @results[1] is the frequency.
+
+When the user comes back to the twingboard, Rails will build the page with their saved twixnotes.  You'll need to implement some javascript to add newly searched twixnotes to the page.  When you save them, they are saved to the DB, but the page needs to be refreshed before they appear.  
+
+See my comments in the twixingboard SHOW view and the scripts. js files
+

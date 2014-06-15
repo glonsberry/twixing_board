@@ -3,4 +3,5 @@ class Twixnote < ActiveRecord::Base
 
 
 
+
 end

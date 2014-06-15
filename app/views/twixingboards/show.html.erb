@@ -6,7 +6,20 @@
   <button type="submit">Search</button>
 </form>
 
+
+<!--@results[0] is the name of the twixnote (the hashtag), @results[1] is the frequency.-->
 <% unless @results.nil? %>
   <span class="twixnote-name"><%= @results[0] %></span>: tweets per second = <span class="twixnote-frequency"><%= @results[1] %></span>
 <% end %>
 <button class="save-twixnote-btn">save</button>
+<p>refresh the page after you click save.</p>
+
+<!-- this is where Rails will put the twixingboard's saved twixnotes-->
+<!-- You'll want to change the elements and classes and stuff for your javascript to work.
+Pay attention to how the delete button works.  It's just a form with one button in it.
+Maybe we can make this work nicer with and javascript AJAX call. -->
+<h3>my twixnotes</h3>
+<ul>
+<% @twixingboard.twixnotes.each do |twixnote| %>
+<li><%= twixnote.name %></li><form action="/twixingboards/<%= @twixingboard.id %>/twixnotes/<%= twixnote.id %>" method="post"><%= token_tag %><input type="hidden" name="_method" value="delete"><button class="delete-btn" id="<%= twixnote.id %>">delete</button></a></form>
+<% end %>

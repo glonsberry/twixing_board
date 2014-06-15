@@ -2,6 +2,7 @@ class TwixingboardsController < ApplicationController
   before_action :require_login
   def index
     
+    
   end
 
   def new
@@ -26,6 +27,13 @@ class TwixingboardsController < ApplicationController
   end
   
   def search
+      
+
+
+
+
+  end
+
 
   def edit
       @twixingboard = Twixingboard.find(params[:id])
@@ -38,7 +46,7 @@ class TwixingboardsController < ApplicationController
   end
 
 
-  end
+
 
   def results
 
