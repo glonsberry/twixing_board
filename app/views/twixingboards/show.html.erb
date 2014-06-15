@@ -9,31 +9,55 @@
 <head>
   <meta charset="UTF-8">
   <title>Twixing Board</title>
-  <link rel="stylesheet" href="slider.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script
 </head>
 
 <body>
 
-  <div id="player">
-    <div id="volume"></div>
-  </div>  
+
+<div class="sliders">
+<p>
+  <label for="amount1">Volume:</label>
+  <input type="text" id="amount1" style="border:0; color:#f6931f; font-weight:bold;">
+</p>
+ 
+<div class="slider-vertical" id="twix-note-1" style="height:200px;"></div>
+ 
+ <p>
+  <label for="amount2">Volume:</label>
+  <input type="text" id="amount2" style="border:0; color:#f6931f; font-weight:bold;">
+</p>
+ 
+<div class="slider-vertical" id="twix-note-2" style="height:200px;"></div>
+
+<p>
+  <label for="amount3">Volume:</label>
+  <input type="text" id="amount3" style="border:0; color:#f6931f; font-weight:bold;">
+</p>
+ 
+<div class="slider-vertical" id="twix-note-3" style="height:200px;"></div>
+
+<p>
+  <label for="amoun4t">Volume:</label>
+  <input type="text" id="amount4" style="border:0; color:#f6931f; font-weight:bold;">
+</p>
+ 
+<div class="slider-vertical" id="twix-note-4" style="height:200px;"></div>
+
+
+
+
+
+
+
 
 
 <form method="get" action="/twixingboards/<%= @twixingboard.id%>/show">
   <input type="textfield" placeholder="hashtag search..." name="search_term">
   <button type="submit">Search</button>
 </form>
-
-
-
-<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-<script src="slider.js" type="text/javascript"></script>
-<embed src="/assets/audio/lightning.mp3" hidden=true autostart=true loop=true>
-
-
-
-
 
 
 

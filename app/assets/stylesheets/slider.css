@@ -1,8 +1,5 @@
-#volume {
-  position: absolute;
-  left: 24px;
-  margin: 0 auto;
-  height: 15px;
-  width: 150px;
-  background-color: blue;
+.slider-vertical {
+  display: inline-block;
+  height: 100px;
+  width: 40px;
 }

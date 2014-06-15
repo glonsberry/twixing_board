@@ -1,33 +1,55 @@
-$(document).ready(function() {
-  $("#volume").slider({
-    min: 0,
-    max: 100,
-    value: 0,
-    animate: true,
-    range: 'min'
-    slide: function(event, ui) {
-      setVolume(ui.value/100);
-    }
+$(function() {
+    $( ".slider-vertical#twix-note-1" ).slider({
+      orientation: "vertical",
+      range: "min",
+      min: 0,
+      max: 100,
+      value: 60,
+      slide: function( event, ui ) {
+        $( "#amount1" ).val( ui.value );
+      }
+    });
+    $( "#amount1" ).val( $( ".slider-vertical#twix-note-1" ).slider( "value" ) );
   });
 
-  var myMedia = document.createElement('audio');
-  ('#player').append(myMedia);
-  myMedia.id = "myMedia";
-  playerAudio('/assets/audio/lightning.mp3', 0);
-});
+$(function() {
+    $( ".slider-vertical#twix-note-2" ).slider({
+      orientation: "vertical",
+      range: "min",
+      min: 0,
+      max: 100,
+      value: 60,
+      slide: function( event, ui ) {
+        $( "#amount2" ).val( ui.value );
+      }
+    });
+    $( "#amount2" ).val( $( ".slider-vertical#twix-note-2" ).slider( "value" ) );
+  });
 
-  function playAudio(fileName, myVolume) {
-  var mediaExt = (myMedia.canPlayType('audio/mp3')) ? '.mp3' : 
-  (myMedia.canPlayType('audio/ogg')) ? '.ogg' : 
-  '';
+$(function() {
+    $( ".slider-vertical#twix-note-3" ).slider({
+      orientation: "vertical",
+      range: "min",
+      min: 0,
+      max: 100,
+      value: 60,
+      slide: function( event, ui ) {
+        $( "#amount3" ).val( ui.value );
+      }
+    });
+    $( "#amount3" ).val( $( ".slider-vertical#twix-note-3" ).slider( "value" ) );
+  });
 
-  myMedia.src = fileName + mediaExt;
-  myMedia.setAttribute('loop' 'loop');
-  setVolume(myVolume);
-  myMedia.play();
-}
-
-function setVolume(myVolume) {
-  var myMedia = document.getElementById('myMedia');
-  myMedia.volume = myVolume;
-}
+$(function() {
+    $( ".slider-vertical#twix-note-4" ).slider({
+      orientation: "vertical",
+      range: "min",
+      min: 0,
+      max: 100,
+      value: 60,
+      slide: function( event, ui ) {
+        $( "#amount4" ).val( ui.value );
+      }
+    });
+    $( "#amount4" ).val( $( ".slider-vertical#twix-note-4" ).slider( "value" ) );
+  });
