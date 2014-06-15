@@ -1,80 +1,78 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Twixing Board</title>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 </head>
 
 <body>
-<hr> 
-<p>
-  <h1><%=@twixingboard.name %></h1>
-</p>
-<% unless @results.nil? %>
-  tweets per second = <%= @results %>
-<% end %>
+  <hr> 
+    <p>
+      <h1><%=@twixingboard.name %></h1>
+    </p>
+      <% unless @results.nil? %>
+        tweets per second = <%= @results %>
+      <% end %>
 
-<div class="sliders">
-  <div class="slider-vertical1">
-    <label for="amount1">Volume:</label>
-    <input type="text" id="amount1" style="border:0; color:#f6931f; font-weight:bold;">
 
-    <div class="slider-vertical" id="twix-note-1" style="height:200px;"></div>
-  </div>
+  <div class="sliders">
+    <div class="slider-vertical1">
+      <label for="amount1">Volume:</label>
+      <input type="text" id="amount1" style="border:0; color:#f6931f; font-weight:bold;">
 
-  <div class="slider-vertical2">
-    <label for="amount2">Volume:</label>
-    <input type="text" id="amount2" style="border:0; color:#f6931f; font-weight:bold;">
+      <div class="slider-vertical" id="twix-note-1" style="height:200px;"></div>
+    </div>
 
- 
+    <div class="slider-vertical2">
+      <label for="amount2">Volume:</label>
+      <input type="text" id="amount2" style="border:0; color:#f6931f; font-weight:bold;">
+
     <div class="slider-vertical" id="twix-note-2" style="height:200px;"></div>
+    </div>
+
+    <div class="slider-vertical3">
+      <label for="amount3">Volume:</label>
+      <input type="text" id="amount3" style="border:0; color:#f6931f; font-weight:bold;">
+
+      <div class="slider-vertical" id="twix-note-3" style="height:200px;"></div>
+    </div>
+
+    <div class="slider-vertical4">
+      <label for="amount4">Volume:</label>
+      <input type="text" id="amount4" style="border:0; color:#f6931f; font-weight:bold;">
+
+      <div class="slider-vertical" id="twix-note-4" style="height:200px;"></div>
+    </div>
   </div>
 
-  <div class="slider-vertical3">
-    <label for="amount3">Volume:</label>
-    <input type="text" id="amount3" style="border:0; color:#f6931f; font-weight:bold;">
-
-
-    <div class="slider-vertical" id="twix-note-3" style="height:200px;"></div>
-  </div>
-
-  <div class="slider-vertical3">
-    <label for="amount4">Volume:</label>
-    <input type="text" id="amount4" style="border:0; color:#f6931f; font-weight:bold;">
-
- 
-    <div class="slider-vertical" id="twix-note-4" style="height:200px;"></div>
-  </div>
-</div>
-<hr>
-
-
-<form method="get" action="/twixingboards/<%= @twixingboard.id%>/show">
-  <input type="textfield" placeholder="hashtag search..." name="search_term">
-  <button type="submit">Search</button>
-</form>
-
-
-
-<!--@results[0] is the name of the twixnote (the hashtag), @results[1] is the frequency.-->
-<% unless @results.nil? %>
-  <span class="twixnote-name"><%= @results[0] %></span>: tweets per second = <span class="twixnote-frequency"><%= @results[1] %></span>
-<% end %>
-<button class="save-twixnote-btn">save</button>
-<p>refresh the page after you click save.</p>
-
+  <hr>
 
 <h3>my twixnotes</h3>
-<ul>
-<% @twixingboard.twixnotes.each do |twixnote| %>
-<li><%= twixnote.name %></li><form action="/twixingboards/<%= @twixingboard.id %>/twixnotes/<%= twixnote.id %>" method="post"><%= token_tag %><input type="hidden" name="_method" value="delete"><button class="delete-btn" id="<%= twixnote.id %>">delete</button></a></form>
-<% end %>
+
+  <form method="get" action="/twixingboards/<%= @twixingboard.id%>/show">
+    <input type="textfield" placeholder="hashtag search..." name="search_term">
+    <button type="submit">Search</button>
+  </form>
 
 
 
-</body>
-</html>
+  <!--@results[0] is the name of the twixnote (the hashtag), @results[1] is the frequency.-->
+  <% unless @results.nil? %>
+    <span class="twixnote-name"><%= @results[0] %></span>: tweets per second = <span class="twixnote-frequency"><%= @results[1] %></span>
+  <% end %>
+    <button class="save-twixnote-btn">save</button>
+  <p>refresh the page after you click save.</p>
+
+
+  <ul>
+    <% @twixingboard.twixnotes.each do |twixnote| %>
+    <li><%= twixnote.name %></li><form action="/twixingboards/<%= @twixingboard.id %>/twixnotes/<%= twixnote.id %>" method="post"><%= token_tag %><input type="hidden" name="_method" value="delete"><button class="delete-btn" id="<%= twixnote.id %>">delete</button></a></form>
+    <% end %>
+
+
+
+  </body>
+  </html>
