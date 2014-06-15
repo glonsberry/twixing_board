@@ -1,6 +1,7 @@
-function Twixnote(name, frequency){
-  this.name = name;
-  this.frequency = frequency;
+function Twixnote(obj){
+  this.id = obj.id;
+  this.name = obj.name;
+  this.frequency = obj.frequency;
 
 }
 
@@ -22,6 +23,7 @@ Twixnote.prototype.saveTwixnote = function(){
   
   $.ajax({
       url:'/twixingboards/' + getTwixingboardId() + '/twixnotes',
+
       method: 'POST',
       dataType: 'json',
       data: { twixnote: { name: $that.name, frequency: $that.frequency }},
@@ -31,14 +33,15 @@ Twixnote.prototype.saveTwixnote = function(){
   });
 }
 
-function deleteTwixnote(twixnote_id){
+Twixnote.prototype.deleteTwixnote = function(){
   $that = this;
   
   $.ajax({
-      url:'/twixingboards/' + getTwixingboardId() + '/twixnotes',
+      url:'/twixingboards/' + getTwixingboardId() + '/delete/twixnotes',
       method: 'DELETE',
       dataType: 'json',
-      data: { twixnote: { id: $that.id, twixingbdard_id: getTwixingboardId() }},
+      data: { twixnote: {id: $that.id, frequency: $that.frequency, name: $that.name }},
+
       success: function(){
         console.log("deleted")
       }
@@ -53,10 +56,12 @@ function searchTwixnote(search_term){
       dataType: 'json',
       data: { search_term: search_term},
       success: function(data){
-        console.log("searched:" + data.name + ":" + data.frequency)
+        twixnote = new Twixnote(data);
+        console.log("searched:" + twixnote)
       }
   });
 }
+
 
 
 

@@ -18,11 +18,6 @@ class TwixingboardsController < ApplicationController
 
   def show
      @twixingboard = Twixingboard.find(params[:id])
-     @frequency = 0
-      unless params[:search_term].nil? 
-        search_term = params[:search_term]
-        @results = @twixingboard.find_frequency(search_term)
-      end
   end
   
   def search
