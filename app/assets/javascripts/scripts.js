@@ -44,7 +44,19 @@ function deleteTwixnote(twixnote_id){
       }
   });
 }
-
+function searchTwixnote(twixnote_id){
+  $that = this;
+  
+  $.ajax({
+      url:'/twixingboards/' + getTwixingboardId() + '/search',
+      method: 'GET',
+      dataType: 'json',
+      data: { search_term: twixnote_id},
+      success: function(data){
+        console.log("searched:" + data.name + ":" + data.frequency)
+      }
+  });
+}
 
 
 

@@ -15,6 +15,8 @@ Delete form button :
 <button class="delete-btn" id="<%= twixnote.id %>">delete</button>
 </form>
 
+UPDATE: I made a js function that might delete a twixnote, but I haven't tested it.
+
 All the action is in the twixingboards SHOW view.  That's the page where the twixingboard will go.  So work with that view and with the scripts file to do your work.
 
 Right now the search is all on the rails end.  It finds the hashtag, calculates the frequency and returns a @results array.  @results[0] is the name and @results[1] is the frequency.

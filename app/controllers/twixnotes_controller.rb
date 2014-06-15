@@ -17,16 +17,19 @@ class TwixnotesController < ApplicationController
   def destroy
 
     Twixnote.delete(params[:id])
-    redirect_to "/twixingboards/#{ params[:twixingboard_id] }"
+    
 
   end
 
   def search
     twixnote = Twixnote.new
     twixnote.name = params[:search_term]
-    twixnote.frequency = twixnote.find_frequency(name)
+    twixnote.frequency = twixnote.find_frequency(twixnote.name)
+    twixnote.save()
 
-
+    respond_to do |format|
+      format.json { render :json => twixnote }
+    end
   end
 
 
