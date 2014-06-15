@@ -6,7 +6,7 @@
   <title>Twixing Board</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script
+  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 </head>
 
 <body>
@@ -66,10 +66,6 @@
 <button class="save-twixnote-btn">save</button>
 <p>refresh the page after you click save.</p>
 
-<!-- this is where Rails will put the twixingboard's saved twixnotes-->
-You'll want to change the elements and classes and stuff for your javascript to work.
-Pay attention to how the delete button works.  It's just a form with one button in it.
-Maybe we can make this work nicer with and javascript AJAX call. -->
 <h3>my twixnotes</h3>
 <ul>
 <% @twixingboard.twixnotes.each do |twixnote| %>
