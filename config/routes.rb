@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   get '/twixingboards/:id/search' => 'twixnotes#search'
 
+  delete '/twixingboards/:id/delete/twixnotes' => 'twixnotes#destroy'
+
     resources :twixingboards do
       resources :twixnotes
   end 

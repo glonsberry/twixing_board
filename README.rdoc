@@ -1,3 +1,7 @@
+UPDATE WL: I messed around with the delete a twixnote code and broke it.  But sometime tomorrow you will be able to have MyTwixnote.delete() in javascript have have it delete the note.
+
+UPDATE WL: I forgot to mention that the search function will save the new Twixnote.
+
 UPDATE: I made a js method searchTwixnote(search_term).  It will return an object
 (I think it's a twixnote object)
 with a name and frequency.  The name is the same as the search term and the frequency is the
