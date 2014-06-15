@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<h1> the board goes here </h1>
-<p>Twixingboard name: <%=@twixingboard.name %></p>
-<% unless @results.nil? %>
-  tweets per second = <%= @results %>
-<% end %>
 
 <html lang="en">
 <head>
@@ -15,43 +10,46 @@
 </head>
 
 <body>
+<hr>
+<h1> the board goes here </h1>
+<p>Twixingboard name: <%=@twixingboard.name %></p>
+<% unless @results.nil? %>
+  tweets per second = <%= @results %>
+<% end %>
 
 
-<div class="sliders">
-<p>
+<div class="slider-vertical1">
   <label for="amount1">Volume:</label>
   <input type="text" id="amount1" style="border:0; color:#f6931f; font-weight:bold;">
-</p>
- 
-<div class="slider-vertical" id="twix-note-1" style="height:200px;"></div>
- 
- <p>
+
+  <div class="slider-vertical" id="twix-note-1" style="height:200px;"></div>
+</div>
+
+<div class="slider-vertical2">
   <label for="amount2">Volume:</label>
   <input type="text" id="amount2" style="border:0; color:#f6931f; font-weight:bold;">
-</p>
- 
-<div class="slider-vertical" id="twix-note-2" style="height:200px;"></div>
 
-<p>
+ 
+  <div class="slider-vertical" id="twix-note-2" style="height:200px;"></div>
+</div>
+
+<div class="slider-vertical3">
   <label for="amount3">Volume:</label>
   <input type="text" id="amount3" style="border:0; color:#f6931f; font-weight:bold;">
-</p>
- 
-<div class="slider-vertical" id="twix-note-3" style="height:200px;"></div>
 
-<p>
-  <label for="amoun4t">Volume:</label>
+ 
+  <div class="slider-vertical" id="twix-note-3" style="height:200px;"></div>
+</div>
+
+<div class="slider-vertical3">
+  <label for="amount4">Volume:</label>
   <input type="text" id="amount4" style="border:0; color:#f6931f; font-weight:bold;">
-</p>
+
  
-<div class="slider-vertical" id="twix-note-4" style="height:200px;"></div>
+  <div class="slider-vertical" id="twix-note-4" style="height:200px;"></div>
+</div>
 
-
-
-
-
-
-
+<hr>
 
 
 <form method="get" action="/twixingboards/<%= @twixingboard.id%>/show">
@@ -68,10 +66,7 @@
 <button class="save-twixnote-btn">save</button>
 <p>refresh the page after you click save.</p>
 
-<!-- this is where Rails will put the twixingboards saved twixnotes-->
-<!-- You'll want to change the elements and classes and stuff for your javascript to work.
-Pay attention to how the delete button works.  It's just a form with one button in it.
-Maybe we can make this work nicer with and javascript AJAX call. -->
+
 <h3>my twixnotes</h3>
 <ul>
 <% @twixingboard.twixnotes.each do |twixnote| %>
