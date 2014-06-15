@@ -25,9 +25,15 @@
     *zoom: 1;
 }
 
+.sliders {
+  float:left; 
+  width:100% 
+}
 div, p.volume {
   display: inline-block;
+  width: 20%;
 }
+
 p {
   text-align: center;
 }
@@ -35,3 +41,4 @@ p {
 h1 {
   text-align: center;
 }
+

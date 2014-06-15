@@ -4,7 +4,7 @@ $(function() {
       range: "min",
       min: 0,
       max: 100,
-      value: 60,
+      value: 0,
       slide: function( event, ui ) {
         $( "#amount1" ).val( ui.value );
       }
@@ -18,7 +18,7 @@ $(function() {
       range: "min",
       min: 0,
       max: 100,
-      value: 60,
+      value: 0,
       slide: function( event, ui ) {
         $( "#amount2" ).val( ui.value );
       }
@@ -32,7 +32,7 @@ $(function() {
       range: "min",
       min: 0,
       max: 100,
-      value: 60,
+      value: 0,
       slide: function( event, ui ) {
         $( "#amount3" ).val( ui.value );
       }
@@ -46,7 +46,7 @@ $(function() {
       range: "min",
       min: 0,
       max: 100,
-      value: 60,
+      value: 0,
       slide: function( event, ui ) {
         $( "#amount4" ).val( ui.value );
       }
