@@ -26,10 +26,6 @@ class TwixingboardsController < ApplicationController
   end
   
   def search
-      
-
-
-
 
   end
 
@@ -39,9 +35,9 @@ class TwixingboardsController < ApplicationController
   end
 
   def update
-  twixingboard = Twixingboard.find(params[:id])
-  twixingboard.update(twixingboard_params)
-  redirect_to "/profile/#{ twixer.id }"
+    twixingboard = Twixingboard.find(params[:id])
+    twixingboard.update(twixingboard_params)
+    redirect_to "/profile/#{ twixer.id }"
   end
 
 

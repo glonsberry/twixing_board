@@ -1,3 +1,10 @@
+UPDATE: I made a js method searchTwixnote(search_term).  It will return an object
+(I think it's a twixnote object)
+with a name and frequency.  The name is the same as the search term and the frequency is the
+tweets per second.  now it just puts these to the console, but you can put something
+in the sucess function to make a new twixnote.
+
+
 I think I have all the create and destroy stuff in the controllers that we'll need.
 
 There is a function in the scripts.jsthat will save a twixnote in the DB, but you need to 
@@ -14,6 +21,8 @@ Delete form button :
 <input type="hidden" name="_method" value="delete">
 <button class="delete-btn" id="<%= twixnote.id %>">delete</button>
 </form>
+
+UPDATE: I made a js function that might delete a twixnote, but I haven't tested it.
 
 All the action is in the twixingboards SHOW view.  That's the page where the twixingboard will go.  So work with that view and with the scripts file to do your work.
 

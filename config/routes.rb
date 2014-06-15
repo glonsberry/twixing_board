@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get '/twixingboard' =>'twixingboards#index'
   get '/twixingboards/:id/show' => 'twixingboards#show', as: 'show'
 
+  get '/twixingboards/:id/search' => 'twixnotes#search'
+
     resources :twixingboards do
       resources :twixnotes
   end 
