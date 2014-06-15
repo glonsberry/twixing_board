@@ -16,7 +16,7 @@ $(document).ready(function() {
   playerAudio('http://www.freesfx.co.uk/rx2/mp3s/9/10716_1378944829.mp3', 0);
 });
 
-function playAudio(fileName, myVolume) {
+  function playAudio(fileName, myVolume) {
   var mediaExt = (myMedia.canPlayType('audio/mp3')) ? '.mp3' : 
   (myMedia.canPlayType('audio/ogg')) ? '.ogg' : 
   '';

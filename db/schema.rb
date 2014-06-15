@@ -11,17 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140613183631) do
+ActiveRecord::Schema.define(version: 20140614190110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "twix_notes", force: true do |t|
-    t.integer  "tweet_id"
-    t.integer  "frequency"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "twixers", force: true do |t|
     t.string   "email",            null: false
@@ -37,6 +30,14 @@ ActiveRecord::Schema.define(version: 20140613183631) do
     t.string  "name"
     t.integer "twixnotes_id"
     t.integer "twixer_id"
+  end
+
+  create_table "twixnotes", force: true do |t|
+    t.string   "frequency"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.integer  "twixingboard_id"
   end
 
 end
