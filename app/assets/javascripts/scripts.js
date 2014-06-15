@@ -44,14 +44,14 @@ function deleteTwixnote(twixnote_id){
       }
   });
 }
-function searchTwixnote(twixnote_id){
+function searchTwixnote(search_term){
   $that = this;
   
   $.ajax({
       url:'/twixingboards/' + getTwixingboardId() + '/search',
       method: 'GET',
       dataType: 'json',
-      data: { search_term: twixnote_id},
+      data: { search_term: search_term},
       success: function(data){
         console.log("searched:" + data.name + ":" + data.frequency)
       }

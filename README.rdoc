@@ -1,3 +1,10 @@
+UPDATE: I made a js method searchTwixnote(search_term).  It will return an object
+(I think it's a twixnote object)
+with a name and frequency.  The name is the same as the search term and the frequency is the
+tweets per second.  now it just puts these to the console, but you can put something
+in the sucess function to make a new twixnote.
+
+
 I think I have all the create and destroy stuff in the controllers that we'll need.
 
 There is a function in the scripts.jsthat will save a twixnote in the DB, but you need to 
