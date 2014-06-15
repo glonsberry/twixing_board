@@ -1,5 +1,7 @@
-.slider-vertical {
+div, p.volume {
   display: inline-block;
-  height: 100px;
-  width: 40px;
+
+}
+p {
+  text-align: center;
 }
