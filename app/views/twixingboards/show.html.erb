@@ -29,10 +29,9 @@
 <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 <script src="slider.js" type="text/javascript"></script>
-<embed src="http://www.freesfx.co.uk/rx2/mp3s/9/10716_1378944829.mp3">
+<embed src="/assets/audio/lightning.mp3" hidden=true autostart=true loop=true>
 
-</body>
-</html>
+
 
 
 
@@ -55,3 +54,7 @@ Maybe we can make this work nicer with and javascript AJAX call. -->
 <li><%= twixnote.name %></li><form action="/twixingboards/<%= @twixingboard.id %>/twixnotes/<%= twixnote.id %>" method="post"><%= token_tag %><input type="hidden" name="_method" value="delete"><button class="delete-btn" id="<%= twixnote.id %>">delete</button></a></form>
 <% end %>
 
+
+
+</body>
+</html>

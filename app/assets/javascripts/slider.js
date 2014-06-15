@@ -13,7 +13,7 @@ $(document).ready(function() {
   var myMedia = document.createElement('audio');
   ('#player').append(myMedia);
   myMedia.id = "myMedia";
-  playerAudio('http://www.freesfx.co.uk/rx2/mp3s/9/10716_1378944829.mp3', 0);
+  playerAudio('/assets/audio/lightning.mp3', 0);
 });
 
   function playAudio(fileName, myVolume) {
