@@ -15,12 +15,15 @@ RSpec.describe Twixer, :type => :model do
 
   it "has a changeable email" do 
     expect(@twixer.email).to eq 'gardner@gardner.com'
-    @twixer.email = 'gardner@gardner.com'
+    @twixer.email = 'gardnernew@gardner.com'
     expect(@twixer.email).to eq 'gardnernew@gardner.com'
   end
 
   it "can create a new Twixing Board" do
-    twixer.twixingboard = Twixingboard.new
+    twixingboard = Twixingboard.create(name: "testTwixingBoard")
+    @twixer.twixingboards << twixingboard
+    board = @twixer.twixingboards.first
+    expect(board.name).to eq("testTwixingBoard")
   end
 end
 
