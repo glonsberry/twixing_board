@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+gem 'sentimentalizer'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
 # Use postgresql as the database for Active Record
@@ -44,7 +44,7 @@ group :production do
   gem 'rails_12factor'
 end
 
-group :development, :test do 
+group :development, :test do
   gem 'pry', '~> 0.9.12'
   gem 'pry-nav'
   gem 'rspec-rails'

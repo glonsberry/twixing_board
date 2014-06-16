@@ -64,7 +64,6 @@ Twixnote.prototype.deleteTwixnote = function(){
 }
 
 function newSoundObject(intTime){
-
   var oscillator = context.createOscillator();
   var gain = context.createGain();
   var intTime = intTime;
