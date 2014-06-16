@@ -103,7 +103,8 @@ function searchTwixnote(search_term){
            pitch = Math.random() * 800
             if (twixnote.frequency < 5){
               var intTime = 4000 - (twixnote.frequency * (Math.random() * 500))}
-            else {var intTime = (1 / twixnote.frequency) * 15};
+
+            else {var intTime = (1 / twixnote.frequency) * 150};
 
         // var newFreq = freq * x // function to convert frequency data to rhythm data
           var soundObject = new newSoundObject(intTime, pitch);
