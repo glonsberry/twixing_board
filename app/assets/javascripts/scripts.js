@@ -64,36 +64,38 @@ Twixnote.prototype.deleteTwixnote = function(){
 }
 
 function newSoundObject(intTime, pitch){
-  var soundNode = {};
+  soundNode = {};
 
   var oscillator = context.createOscillator();
-  var gain = context.createGain();
+  var gainNode = context.createGain();
   var intTime = intTime;
-  oscillator.connect(gain);
+  oscillator.connect(gainNode);
   oscillator.frequency.value = pitch;
 
-  gain.connect(context.destination);
+  gainNode.connect(context.destination);
   oscillator.start(0);
-  gain.gain.value = 0;
+  gainNode.gain.value = 0;
 
   setInterval(function(intTime){
     var now = context.currentTime;
-    gain.gain.cancelScheduledValues( now );
-    gain.gain.setValueAtTime(gain.gain.value, now);
-    gain.gain.linearRampToValueAtTime(1 , now + 0.2);
+    gainNode.gain.cancelScheduledValues( now );
+    gainNode.gain.setValueAtTime(gainNode.gain.value, now);
+    gainNode.gain.linearRampToValueAtTime(1 , now + 0.2);
   }, intTime)
   setInterval(function(intTime){
     var now = context.currentTime;
-    gain.gain.cancelScheduledValues( now );
-    gain.gain.setValueAtTime(gain.gain.value, now);
-    gain.gain.linearRampToValueAtTime(0 , now + 0.2)},  20 )
+    gainNode.gain.cancelScheduledValues( now );
+    gainNode.gain.setValueAtTime(gainNode.gain.value, now);
+    gainNode.gain.linearRampToValueAtTime(0 , now + 0.2)},  20 )
 
-soundNode.oscillator = oscillator;
-soundNode.gainNode = gain;
-return soundNode;
-
+  soundNode =  {
+    oscillator: oscillator,
+    gainNode: gainNode
+  };
+  return soundNode;
 
 }
+
 
 
 
@@ -122,7 +124,6 @@ function searchTwixnote(search_term){
          return twixnote;
       }
   });
-
 }
 
 
