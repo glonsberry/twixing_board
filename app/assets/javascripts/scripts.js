@@ -48,12 +48,12 @@ Twixnote.prototype.deleteTwixnote = function(){
   });
 }
 
-function newSoundObject(pitch, intTime){
+function newSoundObject(intTime){
   var oscillator = context.createOscillator();
   var gain = context.createGain();
   var intTime = intTime;
   oscillator.connect(gain);
-  oscillator.frequency.value = pitch;
+  oscillator.frequency.value = 200;
   gain.connect(context.destination);
   oscillator.start(0);
   gain.gain.value = 0;
@@ -83,8 +83,8 @@ function searchTwixnote(search_term){
       success: function(data){
         var twixnote = new Twixnote(data);
         var freq = data.frequency
-        var newFreq = freq * x // function to convert frequency data to rhythm data
-        newSoundObject(newFreq, mood)
+        var newFreq = freq // function to convert frequency data to rhythm data
+        newSoundObject(newFreq)
         //set volume to zero by default?
          console.log("searched:" + twixnote)
       }

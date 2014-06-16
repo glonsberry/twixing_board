@@ -17,6 +17,8 @@ before_action :require_login
   def destroy
 
     Twixnote.delete(params[:id])
+
+    redirect_to show_path
     
 
   end
