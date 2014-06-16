@@ -5,7 +5,7 @@ describe("Twixingboard", function (){
 
   it("search results generated", function() {
     var twix = searchTwixnote("#worldcup");
-    actual   = twix;
+    actual   = twix.name;
     expected = "#worldcup";
     expect(actual).toBe(expected)
   });

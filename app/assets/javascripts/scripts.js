@@ -104,9 +104,8 @@ function searchTwixnote(search_term){
 
         //set volume to zero by default?
          console.log("searched:" + twixnote);
-        
-      };
-      return twixnote;
+         return twixnote;
+      }
   });
 
 }
