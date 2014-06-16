@@ -19,7 +19,8 @@ class Twixnote < ActiveRecord::Base
     end
     frequency = tweetsArr.length/(tweetsArr.first - tweetsArr.last)
     total_tweets_string = tweetsArr.join
-    tweetsArr.each do |tweet|
+      # tweetsArr.each do |tweet|
+      mood = SadPanda.emotion(total_tweets_string)
       #moodArr << SadPanda.emotion(tweet)
     end
 

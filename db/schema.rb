@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20140616204928) do
   end
 
   create_table "twixnotes", force: true do |t|
-    t.string   "frequency"
+    t.integer  "frequency"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
