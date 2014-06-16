@@ -87,7 +87,7 @@ function searchTwixnote(search_term){
         var twixnote = new Twixnote(data);
         var freq = data.frequency
         // var newFreq = freq * x // function to convert frequency data to rhythm data
-        newSoundObject(freq, mood)
+        newSoundObject(freq)
         //set volume to zero by default?
          console.log("searched:" + twixnote)
       }
