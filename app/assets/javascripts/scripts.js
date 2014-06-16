@@ -52,7 +52,7 @@ Twixnote.prototype.deleteTwixnote = function(){
 }
 
 function newSoundObject(intTime){
-  context = new webkitAudioContext();
+  // context = new webkitAudioContext();
 
   var oscillator = context.createOscillator();
   var gain = context.createGain();
