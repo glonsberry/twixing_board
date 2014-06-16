@@ -1,55 +1,94 @@
-  $(function() {
-    $( ".slider-vertical#twix-note-1" ).slider({
-      orientation: "vertical",
-      range: "min",
-      min: 0,
-      max: 100,
-      value: 0,
-      slide: function( event, ui ) {
-        $( "#amount1" ).val( ui.value );
-      }
-    });
-    $( "#amount1" ).val( $( ".slider-vertical#twix-note-1" ).slider( "value" ) );
-  });
+  // $(function() {
+  //   $( ".slider-vertical#twix-note-1" ).slider({
+  //     orientation: "vertical",
+  //     range: "min",
+  //     min: 0,
+  //     max: 100,
+  //     value: 0,
+  //     slide: function( event, ui ) {
+  //       $( "#amount1" ).val( ui.value );
+  //     }
+  //   });
+  //   $( "#amount1" ).val( $( ".slider-vertical#twix-note-1" ).slider( "value" ) );
+  // });
+
+  // $(function() {
+  //   $( ".slider-vertical#twix-note-2" ).slider({
+  //     orientation: "vertical",
+  //     range: "min",
+  //     min: 0,
+  //     max: 100,
+  //     value: 0,
+  //     slide: function( event, ui ) {
+  //       $( "#amount2" ).val( ui.value );
+  //     }
+  //   });
+  //   $( "#amount2" ).val( $( ".slider-vertical#twix-note-2" ).slider( "value" ) );
+  // });
+
+  // $(function() {
+  //   $( ".slider-vertical#twix-note-3" ).slider({
+  //     orientation: "vertical",
+  //     range: "min",
+  //     min: 0,
+  //     max: 100,
+  //     value: 0,
+  //     slide: function( event, ui ) {
+  //       $( "#amount3" ).val( ui.value );
+  //     }
+  //   });
+  //   $( "#amount3" ).val( $( ".slider-vertical#twix-note-3" ).slider( "value" ) );
+  // });
+
+  // $(function() {
+  //   $( ".slider-vertical#twix-note-4" ).slider({
+  //     orientation: "vertical",
+  //     range: "min",
+  //     min: 0,
+  //     max: 100,
+  //     value: 0,
+  //     slide: function( event, ui ) {
+  //       $( "#amount4" ).val( ui.value );
+  //     }
+  //   });
+  //   $( "#amount4" ).val( $( ".slider-vertical#twix-note-4" ).slider( "value" ) );
+  // });
+
+
+
+  // $( ".slider-vertical").on('slide', function(e){
+  //   console.log(e.target)
+
+  // })
+
+
+
+
+
 
   $(function() {
-    $( ".slider-vertical#twix-note-2" ).slider({
+
+    var oscillator = context.createOscillator();
+    var gainNode = context.createGain();
+    oscillator.connect(gainNode);
+    oscillator.frequency.value = 440;
+
+    gainNode.connect(context.destination);
+    oscillator.start(0);
+    gainNode.gain.value = 0;
+
+    $( ".slider-vertical" ).slider({
       orientation: "vertical",
       range: "min",
       min: 0,
       max: 100,
       value: 0,
       slide: function( event, ui ) {
-        $( "#amount2" ).val( ui.value );
+        gainNode.gain.value = ui.value / 100;
       }
     });
-    $( "#amount2" ).val( $( ".slider-vertical#twix-note-2" ).slider( "value" ) );
+
   });
 
-  $(function() {
-    $( ".slider-vertical#twix-note-3" ).slider({
-      orientation: "vertical",
-      range: "min",
-      min: 0,
-      max: 100,
-      value: 0,
-      slide: function( event, ui ) {
-        $( "#amount3" ).val( ui.value );
-      }
-    });
-    $( "#amount3" ).val( $( ".slider-vertical#twix-note-3" ).slider( "value" ) );
-  });
 
-  $(function() {
-    $( ".slider-vertical#twix-note-4" ).slider({
-      orientation: "vertical",
-      range: "min",
-      min: 0,
-      max: 100,
-      value: 0,
-      slide: function( event, ui ) {
-        $( "#amount4" ).val( ui.value );
-      }
-    });
-    $( "#amount4" ).val( $( ".slider-vertical#twix-note-4" ).slider( "value" ) );
-  });
+

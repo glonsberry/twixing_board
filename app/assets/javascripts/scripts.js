@@ -64,6 +64,7 @@ Twixnote.prototype.deleteTwixnote = function(){
 }
 
 function newSoundObject(intTime, pitch){
+  var soundNode = {};
 
   var oscillator = context.createOscillator();
   var gain = context.createGain();
@@ -87,7 +88,14 @@ function newSoundObject(intTime, pitch){
     gain.gain.setValueAtTime(gain.gain.value, now);
     gain.gain.linearRampToValueAtTime(0 , now + 0.2)},  20 )
 
+soundNode.oscillator = oscillator;
+soundNode.gainNode = gain;
+return soundNode;
+
+
 }
+
+
 
 function searchTwixnote(search_term){
   $that = this;
