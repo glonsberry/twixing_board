@@ -16,7 +16,12 @@ before_action :require_login
 
   def destroy
 
-    Twixnote.delete(params[:id])
+    delete_id = params[:twixnote][:id]
+    Twixnote.delete(delete_id)
+
+    respond_to do |format|
+      format.json { render :json =>{ deleted: delete_id } } 
+    end
     
 
   end
