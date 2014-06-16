@@ -1,4 +1,4 @@
-context = new webkitAudioContext();
+  context = new webkitAudioContext();
 
 
 function Twixnote(obj){
@@ -69,12 +69,13 @@ Twixnote.prototype.deleteTwixnote = function(){
   });
 }
 
-function newSoundObject(intTime){
+function newSoundObject(intTime, pitch){
+
   var oscillator = context.createOscillator();
   var gain = context.createGain();
   var intTime = intTime;
   oscillator.connect(gain);
-  oscillator.frequency.value = 200;
+  oscillator.frequency.value = pitch;
 
   gain.connect(context.destination);
   oscillator.start(0);
