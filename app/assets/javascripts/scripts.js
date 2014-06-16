@@ -64,61 +64,80 @@ Twixnote.prototype.deleteTwixnote = function(){
   });
 }
 
-// Twixnote.prototype.playSound = function(){
-
-//   var oscillator = context.createOscillator();
-//   var gain = context.createGain();
-//   var intTime = this.frequency;
-//   oscillator.connect(gain);
-//   oscillator.frequency.value = Math.random() * 400; //this.mood
-
-//   gain.connect(context.destination);
-//   oscillator.start(0);
-//   gain.gain.value = 0; //change volume here
-
-//   setInterval(function(intTime){
-//     var now = context.currentTime;
-//     gain.gain.cancelScheduledValues( now );
-//     gain.gain.setValueAtTime(gain.gain.value, now);
-//     gain.gain.linearRampToValueAtTime(1 , now + 0.2);
-//   }, intTime)
-//   setInterval(function(intTime){
-//     var now = context.currentTime;
-//     gain.gain.cancelScheduledValues( now );
-//     gain.gain.setValueAtTime(gain.gain.value, now);
-//     gain.gain.linearRampToValueAtTime(0 , now + 0.2)},  20 )
-
-// }
-
-function newSoundObject(intTime, pitch){
+Twixnote.prototype.playSound = function(){
 
   var oscillator = context.createOscillator();
   var gain = context.createGain();
-  var intTime = intTime;
+   if (this.frequency < 1){
+      var intTime = 6000 - (this.frequency * (Math.random() * 500))}
+  else {var intTime = (1 / this.frequency) * 10000};
   oscillator.connect(gain);
-  oscillator.frequency.value = pitch;
+      if (this.mood = "joy")
+        {var moodFreq = Math.random() * (250-100) + 150}
+      else if (this.mood = "sadness")
+        {var moodFreq = Math.random() * (400-251) + 251}
+      else if (this.mood = "disgust")
+        {var moodFreq = Math.random() * (500-401) + 401}
+      else if (this.mood = "surprise")
+        {var moodFreq = Math.random() * (650-501) + 501}
+      else if (this.mood = "fear")
+        {var moodFreq = Math.random() * (800-651) + 651}
+      else if (this.mood = "anger")
+        {var moodFreq = Math.random() * (950-801) + 801}
+  oscillator.frequency.value = moodFreq
 
   gain.connect(context.destination);
   oscillator.start(0);
-  gain.gain.value = .5;
+  gain.gain.value = 0; //change volume here
 
   setInterval(function(intTime){
     var now = context.currentTime;
     // gain.gain.cancelScheduledValues( now );
     // gain.gain.setValueAtTime(gain.gain.value, now);
     // gain.gain.linearRampToValueAtTime(1 , now + 0.2);
-    oscillator.disconnect(0);
-  }, intTime)
+    oscillator.connect(context.destination)
+  }, intTime);
+
   setInterval(function(intTime){
     var now = context.currentTime;
     // gain.gain.cancelScheduledValues( now );
     // gain.gain.setValueAtTime(gain.gain.value, now);
     // gain.gain.linearRampToValueAtTime(0 , now + 0.2)
-    oscillator.connect(context.destination)
+        oscillator.disconnect(0);
       }
-    ,  intTime + 20 )
+    ,  intTime + 50 );
 
 }
+
+// function newSoundObject(intTime, pitch){
+
+//   var oscillator = context.createOscillator();
+//   var gain = context.createGain();
+//   var intTime = intTime;
+//   oscillator.connect(gain);
+//   oscillator.frequency.value = pitch;
+
+//   gain.connect(context.destination);
+//   oscillator.start(0);
+//   gain.gain.value = .5;
+//   oscillator.disconnect(0);
+//   setInterval(function(intTime){
+//     var now = context.currentTime;
+//     // gain.gain.cancelScheduledValues( now );
+//     // gain.gain.setValueAtTime(gain.gain.value, now);
+//     // gain.gain.linearRampToValueAtTime(1 , now + 0.2);
+//     oscillator.connect(context.destination)
+//   }, intTime)
+//   setInterval(function(intTime){
+//     var now = context.currentTime;
+//     // gain.gain.cancelScheduledValues( now );
+//     // gain.gain.setValueAtTime(gain.gain.value, now);
+//     // gain.gain.linearRampToValueAtTime(0 , now + 0.2)
+//         oscillator.disconnect(0);
+//       }
+//     ,  intTime + 50 )
+
+// }
 
 function searchTwixnote(search_term){
   $that = this;
@@ -131,13 +150,12 @@ function searchTwixnote(search_term){
       success: function(data){
 
            twixnote = new Twixnote(data);
-           pitch = Math.random() * 800
-            if (twixnote.frequency < 1){
-              var intTime = 6000 - (twixnote.frequency * (Math.random() * 500))}
-            else {var intTime = (1 / twixnote.frequency) * 10000};
+           // pitch = Math.random() * 800
+           //  if (twixnote.frequency < 1){
+           //    var intTime = 6000 - (twixnote.frequency * (Math.random() * 500))}
+           //  else {var intTime = (1 / twixnote.frequency) * 10000};
 
-        // var newFreq = freq * x // function to convert frequency data to rhythm data
-          var soundObject = new newSoundObject(intTime, pitch);
+          // var soundObject = new newSoundObject(intTime, pitch);
 
         //set volume to zero by default?
          console.log("searched:" + twixnote);
