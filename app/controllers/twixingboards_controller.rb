@@ -1,12 +1,13 @@
 class TwixingboardsController < ApplicationController
   before_action :require_login
+  
   def index
     
     
   end
 
   def new
-
+    @twixingboard = Twixingboard.new
   end
 
   def create
