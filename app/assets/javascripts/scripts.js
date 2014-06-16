@@ -11,6 +11,7 @@ function Twixnote(obj){
 
 function Twixingboard(id){
   this.id = id;
+  this.twixnotesArr = [];
 }
 
 function getTwixingboardId(){
@@ -38,6 +39,7 @@ Twixnote.prototype.saveTwixnote = function(){
 
 Twixingboard.prototype.fetchTwixnotes = function(){
   $that = this;
+  twixnotesArr = [];
 
   $.ajax({
     url:'/twixingboards/' + getTwixingboardId() + '/fetch',
@@ -45,7 +47,10 @@ Twixingboard.prototype.fetchTwixnotes = function(){
     dataType: 'json',
     data: {id: getTwixingboardId()},
     success: function(data){
-      console.log(data)
+      console.log(data);
+      $that.twixnotesArr = data;
+
+
     }
   })
 };
@@ -178,13 +183,10 @@ function searchTwixnote(search_term){
 
  $(function(){
 //the code here is just to see it working on the page.  Change it however you want.
-  $('.save-twixnote-btn').click(function(){
-    var twixnoteName = $('.twixnote-name').html();
-    var twixnoteFrequency = $('.twixnote-frequency').html();
+  myTwixingboard = new Twixingboard(1);
+  myTwixingboard.fetchTwixnotes();
 
-    var mytwixnote = new Twixnote(twixnoteName, twixnoteFrequency);
-    mytwixnote.saveTwixnote();
-    })
+
   });
 
 
