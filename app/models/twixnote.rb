@@ -1,10 +1,12 @@
 class Twixnote < ActiveRecord::Base
   belongs_to :twixingboard
 
-
-
-  def find_frequency(search_term)
+  def get_twixnote(search_term)
     tweetsArr=[]
+    twixnote = {}
+    moodArr = []
+
+
     client = Twitter::REST::Client.new do |config|
       config.consumer_key        = ENV['TWITTER_API_KEY']
       config.consumer_secret     = ENV['TWITTER_API_SECRET']
@@ -12,30 +14,16 @@ class Twixnote < ActiveRecord::Base
       config.access_token_secret = ENV['TWITTER_ACCESS_TOKEN_SECRET']
     end
 
-
-    client.search(search_term, :result_type => "recent").take(100).each do |tweet|
-      tweetsArr << tweet.created_at
+    client.search(search_term, :result_type => "recent").take(1).each do |tweet|
+      tweetsArr << tweet.rate
+    end
+    frequency = tweetsArr.length/(tweetsArr.first - tweetsArr.last)
+    total_tweets_string = tweetsArr.join
+    tweetsArr.each do |tweet|
+      #moodArr << SadPanda.emotion(tweet)
     end
 
-    tweets_per_sec = tweetsArr.length/(tweetsArr.first - tweetsArr.last)
-
-
+    twixnote = { :name => search_term, :frequency => frequency, :mood => mood }
   end
 
-  def find_mood(search_term)
-    tweetsArr=[]
-    client = Twitter::REST::Client.new do |config|
-      config.consumer_key        = ENV['TWITTER_API_KEY']
-      config.consumer_secret     = ENV['TWITTER_API_SECRET']
-      config.access_token        = ENV['TWITTER_ACCESS_TOKEN']
-      config.access_token_secret = ENV['TWITTER_ACCESS_TOKEN_SECRET']
-    end
-    client.search(search_term, :result_type => "recent").take(100).each do |tweet|
-      tweetsArr << tweet.text
-    end
-
-    newArr = tweetsArr.join
-    mood = SadPanda.emotion(newArr)
-
-  end
 end

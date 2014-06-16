@@ -6,6 +6,7 @@ function Twixnote(obj){
   this.name = obj.name;
   this.mood = obj.mood;
   this.frequency = obj.frequency;
+  this.mood = obj.mood;
 }
 
 function Twixingboard(id){

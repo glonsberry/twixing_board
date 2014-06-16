@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140614190110) do
+ActiveRecord::Schema.define(version: 20140616204928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20140614190110) do
     t.datetime "updated_at"
     t.string   "name"
     t.integer  "twixingboard_id"
+    t.string   "mood"
   end
 
 end
