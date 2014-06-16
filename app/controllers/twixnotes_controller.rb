@@ -9,30 +9,37 @@ before_action :require_login
       format.json { render :json =>new_twixnote }
       format.html { redirect_to show_path }
     end
-    twixingboard = Twixingboard.find(params[:twixingboard_id])
+    twixingboard = Twixingboard.find(params[:id])
     twixingboard.twixnotes << new_twixnote
     
   end
 
   def destroy
 
-    Twixnote.delete(params[:id])
 
-    redirect_to show_path
-    
+    delete_id = params[:twixnote][:id]
+    Twixnote.delete(delete_id)
 
+
+    respond_to do |format|
+      format.json { render :json =>{ deleted: delete_id } } 
+    end
   end
 
   def search
-    twixnote = Twixnote.new
-    twixnote.name = params[:search_term]
-    twixnote.frequency = twixnote.find_frequency(twixnote.name)
-    twixnote.save()
+    new_twixnote = Twixnote.new
+    new_twixnote.name = params[:search_term]
+    new_twixnote.frequency = new_twixnote.find_frequency(new_twixnote.name)
+    new_twixnote.save()
+    twixingboard = Twixingboard.find(params[:id])
+    twixingboard.twixnotes << new_twixnote
 
     respond_to do |format|
-      format.json { render :json => twixnote }
+      format.json { render :json => new_twixnote }
     end
   end
+
+ 
 
 
 

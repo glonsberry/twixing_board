@@ -5,6 +5,10 @@ function Twixnote(obj){
 
 }
 
+function Twixingboard(id){
+  this.id = id;
+}
+
 function getTwixingboardId(){
   return window.location.pathname.split('/')[2];
   }
@@ -31,7 +35,21 @@ Twixnote.prototype.saveTwixnote = function(){
         console.log("saved" + $that)
       }
   });
-}
+};
+
+Twixingboard.prototype.fetchTwixnotes = function(){
+  $that = this;
+
+  $.ajax({
+    url:'/twixingboards/' + getTwixingboardId() + '/fetch',
+    method: 'GET',
+    dataType: 'json',
+    data: {id: getTwixingboardId()},
+    success: function(data){
+      console.log(data)
+    }
+  })
+};
 
 Twixnote.prototype.deleteTwixnote = function(){
   $that = this;
