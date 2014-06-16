@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   get '/twixingboard' =>'twixingboards#index'
   get '/twixingboards/:id/show' => 'twixingboards#show', as: 'show'
-
+  post '/twixingboards' => 'twixingboards#create'
   get '/twixingboards/:id/search' => 'twixnotes#search'
 
   delete '/twixingboards/:id/delete/twixnotes' => 'twixnotes#destroy'
