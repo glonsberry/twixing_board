@@ -3,23 +3,20 @@ before_action :require_login
   def index
   end
 
-  def create
-    new_twixnote = Twixnote.create(twixnote_params)
-    respond_to do |format|
-      format.json { render :json =>new_twixnote }
-      format.html { redirect_to show_path }
-    end
-    twixingboard = Twixingboard.find(params[:id])
-    twixingboard.twixnotes << new_twixnote
+  # def create
+  #   new_twixnote = Twixnote.create(twixnote_params)
+  #   respond_to do |format|
+  #     format.json { render :json =>new_twixnote }
+  #     format.html { redirect_to show_path }
+  #   end
+  #   twixingboard = Twixingboard.find(params[:id])
+  #   twixingboard.twixnotes << new_twixnote
     
-  end
+  # end
 
   def destroy
-
-
     delete_id = params[:twixnote][:id]
     Twixnote.delete(delete_id)
-
 
     respond_to do |format|
       format.json { render :json =>{ deleted: delete_id } } 
@@ -38,14 +35,6 @@ before_action :require_login
       format.json { render :json => new_twixnote }
     end
   end
-
- 
-
-
-
-
-
-
 
 private
   def twixnote_params

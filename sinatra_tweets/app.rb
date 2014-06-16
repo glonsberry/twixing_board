@@ -42,7 +42,7 @@ end
 #   puts tweet.text
 # end
 tweetsArr = []
-client.search("2014-06-11", :result_type => "recent").take(100).each do |tweet|
+client.search("bjork", :result_type => "recent").take(100).each do |tweet|
   tweetsArr << tweet.text + " " + tweet.created_at.to_s
 
 end

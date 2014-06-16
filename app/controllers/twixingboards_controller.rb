@@ -1,13 +1,15 @@
 class TwixingboardsController < ApplicationController
   before_action :require_login
+
   
   def index
     
     
   end
 
+
   def new
-    @twixingboard = Twixingboard.new
+
   end
 
   def create
@@ -21,11 +23,7 @@ class TwixingboardsController < ApplicationController
      @twixingboard = Twixingboard.find(params[:id])
   end
   
-  def search
-
-  end
-
-   def fetch
+  def fetch
     twixnotesArr = []
     twixingboard = Twixingboard.find(params[:id])
     twixnotesArr = twixingboard.twixnotes
@@ -35,23 +33,15 @@ class TwixingboardsController < ApplicationController
     end    
   end
 
-  def edit
-      @twixingboard = Twixingboard.find(params[:id])
-  end
+  # def edit
+  #     @twixingboard = Twixingboard.find(params[:id])
+  # end
 
-  def update
-    twixingboard = Twixingboard.find(params[:id])
-    twixingboard.update(twixingboard_params)
-    redirect_to "/profile/#{ twixer.id }"
-  end
-
-
-
-
-  def results
-
-    
-  end
+  # def update
+  #   twixingboard = Twixingboard.find(params[:id])
+  #   twixingboard.update(twixingboard_params)
+  #   redirect_to "/profile/#{ twixer.id }"
+  # end
 
   private
     def twixingboard_params
