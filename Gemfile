@@ -29,6 +29,7 @@ gem 'sorcery'
 gem 'skeleton-rails'
 gem 'jquery-ui-rails'
 gem "paperclip", "~> 4.1"
+gem "sad_panda"
 
 
 
