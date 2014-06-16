@@ -1,5 +1,0 @@
-KEY1 = ENV["TWITTER_API_KEY"]
-KEY2 = ENV["TWITTER_API_SECRET"]
-
-
-@secret = KEY1 || ENV["KEY1"]
