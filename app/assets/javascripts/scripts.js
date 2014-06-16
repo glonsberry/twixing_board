@@ -1,3 +1,6 @@
+context = new webkitAudioContext();
+
+
 function Twixnote(obj){
   this.id = obj.id;
   this.name = obj.name;
@@ -67,11 +70,13 @@ Twixnote.prototype.deleteTwixnote = function(){
 }
 
 function newSoundObject(intTime){
+
   var oscillator = context.createOscillator();
   var gain = context.createGain();
   var intTime = intTime;
   oscillator.connect(gain);
   oscillator.frequency.value = 200;
+
   gain.connect(context.destination);
   oscillator.start(0);
   gain.gain.value = 0;
@@ -99,12 +104,13 @@ function searchTwixnote(search_term){
       dataType: 'json',
       data: { search_term: search_term},
       success: function(data){
-        var twixnote = new Twixnote(data);
-        var freq = data.frequency
-        var newFreq = freq // function to convert frequency data to rhythm data
-        newSoundObject(newFreq)
+           twixnote = new Twixnote(data);
+          var intTime = twixnote.frequency * 20;
+        // var newFreq = freq * x // function to convert frequency data to rhythm data
+          newSoundObject(intTime);
+
         //set volume to zero by default?
-         console.log("searched:" + twixnote)
+         console.log("searched:" + twixnote);
       }
   });
 }
