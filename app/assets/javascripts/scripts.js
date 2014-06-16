@@ -1,4 +1,4 @@
-context = new webkitAudioContext();
+  context = new webkitAudioContext();
 
 
 function Twixnote(obj){
@@ -63,12 +63,13 @@ Twixnote.prototype.deleteTwixnote = function(){
   });
 }
 
-function newSoundObject(intTime){
+function newSoundObject(intTime, pitch){
+
   var oscillator = context.createOscillator();
   var gain = context.createGain();
   var intTime = intTime;
   oscillator.connect(gain);
-  oscillator.frequency.value = 200;
+  oscillator.frequency.value = pitch;
 
   gain.connect(context.destination);
   oscillator.start(0);
@@ -97,10 +98,15 @@ function searchTwixnote(search_term){
       dataType: 'json',
       data: { search_term: search_term},
       success: function(data){
-          var twixnote = new Twixnote(data);
-          var intTime = twixnote.frequency * 20;
+
+           twixnote = new Twixnote(data);
+           pitch = Math.random() * 800
+            if (twixnote.frequency < 5){
+              var intTime = 4000 - (twixnote.frequency * (Math.random() * 500))}
+            else {var intTime = (1 / twixnote.frequency) * 15};
+
         // var newFreq = freq * x // function to convert frequency data to rhythm data
-          newSoundObject(intTime);
+          var soundObject = new newSoundObject(intTime, pitch);
 
         //set volume to zero by default?
          console.log("searched:" + twixnote);
