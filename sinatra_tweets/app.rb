@@ -1,4 +1,4 @@
-
+require 'sad_panda'
 
 # require 'tweetstream'
 
@@ -42,10 +42,21 @@ end
 #   puts tweet.text
 # end
 tweetsArr = []
-client.search("bjork", :result_type => "recent").take(100).each do |tweet|
+moodArr = []
+polarityArr = []
+
+client.search("#USA", :result_type => "recent").take(1).each do |tweet|
   tweetsArr << tweet.text + " " + tweet.created_at.to_s
 
 end
-puts tweetsArr
+
+    tweetsArr.each do |tweet|
+      tweetsArr << tweet
+     # moodArr << SadPanda.emotion(tweet)
+      #polarityArr << SadPanda.polarity(tweet)
+    end
+    puts tweetsArr
+
+    
 
 #tweets = client.search("moon").text
