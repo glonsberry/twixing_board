@@ -65,17 +65,19 @@
 
 
 
+var Slider = 
 
   $(function() {
 
     var oscillator = context.createOscillator();
     var gainNode = context.createGain();
     oscillator.connect(gainNode);
-    oscillator.frequency.value = 440;
+    oscillator.frequency.value = twixnote.frequency;
 
     gainNode.connect(context.destination);
     oscillator.start(0);
     gainNode.gain.value = 0;
+
 
     $( ".slider-vertical" ).slider({
       orientation: "vertical",
@@ -87,8 +89,8 @@
         gainNode.gain.value = ui.value / 100;
       }
     });
-
   });
+  
 
 
 
