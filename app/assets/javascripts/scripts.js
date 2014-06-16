@@ -4,6 +4,7 @@
 function Twixnote(obj){
   this.id = obj.id;
   this.name = obj.name;
+  this.mood = obj.mood;
   this.frequency = obj.frequency;
 
 }
@@ -69,6 +70,32 @@ Twixnote.prototype.deleteTwixnote = function(){
   });
 }
 
+// Twixnote.prototype.playSound = function(){
+
+//   var oscillator = context.createOscillator();
+//   var gain = context.createGain();
+//   var intTime = this.frequency;
+//   oscillator.connect(gain);
+//   oscillator.frequency.value = Math.random() * 400; //this.mood
+
+//   gain.connect(context.destination);
+//   oscillator.start(0);
+//   gain.gain.value = 0; //change volume here
+
+//   setInterval(function(intTime){
+//     var now = context.currentTime;
+//     gain.gain.cancelScheduledValues( now );
+//     gain.gain.setValueAtTime(gain.gain.value, now);
+//     gain.gain.linearRampToValueAtTime(1 , now + 0.2);
+//   }, intTime)
+//   setInterval(function(intTime){
+//     var now = context.currentTime;
+//     gain.gain.cancelScheduledValues( now );
+//     gain.gain.setValueAtTime(gain.gain.value, now);
+//     gain.gain.linearRampToValueAtTime(0 , now + 0.2)},  20 )
+
+// }
+
 function newSoundObject(intTime, pitch){
 
   var oscillator = context.createOscillator();
@@ -79,19 +106,23 @@ function newSoundObject(intTime, pitch){
 
   gain.connect(context.destination);
   oscillator.start(0);
-  gain.gain.value = 0;
+  gain.gain.value = .5;
 
   setInterval(function(intTime){
     var now = context.currentTime;
-    gain.gain.cancelScheduledValues( now );
-    gain.gain.setValueAtTime(gain.gain.value, now);
-    gain.gain.linearRampToValueAtTime(1 , now + 0.2);
+    // gain.gain.cancelScheduledValues( now );
+    // gain.gain.setValueAtTime(gain.gain.value, now);
+    // gain.gain.linearRampToValueAtTime(1 , now + 0.2);
+    oscillator.disconnect(0);
   }, intTime)
   setInterval(function(intTime){
     var now = context.currentTime;
-    gain.gain.cancelScheduledValues( now );
-    gain.gain.setValueAtTime(gain.gain.value, now);
-    gain.gain.linearRampToValueAtTime(0 , now + 0.2)},  20 )
+    // gain.gain.cancelScheduledValues( now );
+    // gain.gain.setValueAtTime(gain.gain.value, now);
+    // gain.gain.linearRampToValueAtTime(0 , now + 0.2)
+    oscillator.connect(context.destination)
+      }
+    ,  intTime + 20 )
 
 }
 
@@ -106,9 +137,9 @@ function searchTwixnote(search_term){
       success: function(data){
            twixnote = new Twixnote(data);
            pitch = Math.random() * 800
-            if (twixnote.frequency < 5){
-              var intTime = 4000 - (twixnote.frequency * (Math.random() * 500))}
-            else {var intTime = (1 / twixnote.frequency) * 150};
+            if (twixnote.frequency < 1){
+              var intTime = 6000 - (twixnote.frequency * (Math.random() * 500))}
+            else {var intTime = (1 / twixnote.frequency) * 10000};
         // var newFreq = freq * x // function to convert frequency data to rhythm data
           newSoundObject(intTime, pitch);
 

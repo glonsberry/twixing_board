@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+gem 'sad_panda'
 gem 'sentimentalizer'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
