@@ -4,8 +4,8 @@ describe("Twixingboard", function (){
   });
 
   it("search results generated", function() {
-    searchTixnote("#worldcup");
-    actual   = twixer.name;
+    var twix = searchTwixnote("#worldcup");
+    actual   = twix;
     expected = "#worldcup";
     expect(actual).toBe(expected)
   });

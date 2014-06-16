@@ -98,15 +98,18 @@ function searchTwixnote(search_term){
       dataType: 'json',
       data: { search_term: search_term},
       success: function(data){
-           twixnote = new Twixnote(data);
+          var twixnote = new Twixnote(data);
           var intTime = twixnote.frequency * 20;
         // var newFreq = freq * x // function to convert frequency data to rhythm data
           newSoundObject(intTime);
 
         //set volume to zero by default?
          console.log("searched:" + twixnote);
-      }
+        
+      };
+      return twixnote;
   });
+
 }
 
 
