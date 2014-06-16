@@ -24,6 +24,15 @@ class TwixingboardsController < ApplicationController
 
   end
 
+   def fetch
+    twixnotesArr = []
+    twixingboard = Twixingboard.find(params[:id])
+    twixnotesArr = twixingboard.twixnotes
+
+    respond_to do |format|
+      format.json {render :json => twixnotesArr}
+    end    
+  end
 
   def edit
       @twixingboard = Twixingboard.find(params[:id])
