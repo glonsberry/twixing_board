@@ -49,8 +49,6 @@ Twixingboard.prototype.fetchTwixnotes = function(){
       console.log(data);
       $that.twixnotesArr = data;
       $that.renderTwixnotes();
-
-
     }
   })
 };
@@ -179,19 +177,14 @@ function searchTwixnote(search_term){
   });
 }
 
-
-
-
-
-
-
  $(function(){
 //the code here is just to see it working on the page.  Change it however you want.
 
   var twixnoteArr = []
   myTwixingboard = new Twixingboard(1);
   myTwixingboard.fetchTwixnotes();
- 
+});
+
 
 
   
@@ -208,5 +201,4 @@ function searchTwixnote(search_term){
 
 
 
-  });
 
