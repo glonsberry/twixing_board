@@ -51,20 +51,24 @@ Twixingboard.prototype.fetchTwixnotes = function(){
         $that.twixnotesArr.push(twixnote)
       }
      
-      $that.renderTwixnotes();
+      // $that.renderTwixnotes();
       $that.renderSliders();
     }
   })
 };
 
-Twixingboard.prototype.renderTwixnotes = function(){
-  for (var i = 1; i < this.twixnotesArr.length; ++i ){
+// Twixingboard.prototype.renderTwixnotes = function(){
+//   for (var i = 1; i < this.twixnotesArr.length; ++i ){
     
     
-  }
-}
+//   }
+// }
 
 Twixingboard.prototype.renderSliders = function(){
+  $('.slider-container').html('');
+  $('.twixnotes_container').html('');
+
+
   for (var i = 1; i < this.twixnotesArr.length; ++i ){
     var elem = $('<div>').html(this.twixnotesArr[i].name);
     var soundElem = $('<div>').html("<input id='volume' type='range' min='0' max='2' step='0.1' value='0.0'>");
@@ -164,28 +168,36 @@ function newSoundObject(intTime, pitch){
     ,  intTime + 20 )
 }
 
-function searchTwixnote(search_term){
+Twixingboard.prototype.searchTwixnote = function(search_term){
   $that = this;
 
   $.ajax({
       url:'/twixingboards/' + getTwixingboardId() + '/search',
       method: 'GET',
       dataType: 'json',
-      data: { search_term: search_term},
+      data: { search_term: search_term },
+      error: function (xhr, ajaxOptions, thrownError) {
+        alert(xhr.status);
+        alert(thrownError);
+      },
       success: function(data){
-
-           twixnote = new Twixnote(data);
-           pitch = Math.random() * 800
-            if (twixnote.frequency < 1){
-              var intTime = 6000 - (twixnote.frequency * (Math.random() * 500))}
-            else {var intTime = (1 / twixnote.frequency) * 10000};
+        console.log(data);
+        debugger;
+        twixnote = new Twixnote(data);
+        pitch = Math.random() * 800
+        if (twixnote.frequency < 1){
+          var intTime = 6000 - (twixnote.frequency * (Math.random() * 500))}
+        else {var intTime = (1 / twixnote.frequency) * 10000};
 
         // var newFreq = freq * x // function to convert frequency data to rhythm data
-          var soundObject = new newSoundObject(intTime, pitch);
+        var soundObject = new newSoundObject(intTime, pitch);
 
         //set volume to zero by default?
-         console.log("searched:" + twixnote);
-         return twixnote;
+        debugger;
+        $that.twixnotesArr.push(twixnote);
+        $that.renderSliders();
+
+        return twixnote;
       }
   });
 }
@@ -196,6 +208,13 @@ function searchTwixnote(search_term){
   var twixnoteArr = []
   myTwixingboard = new Twixingboard(1);
   myTwixingboard.fetchTwixnotes();
+
+  $('.search_form').submit(function(e){
+    e.preventDefault();
+    
+    myTwixingboard.searchTwixnote($('.search_term').val())
+  })
+
 });
 
 
