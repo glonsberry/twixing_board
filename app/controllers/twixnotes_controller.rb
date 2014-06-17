@@ -28,10 +28,11 @@ before_action :require_login
     new_twixnote = Twixnote.create(new_twixnote.get_twixnote(params[:search_term]))
     twixingboard = Twixingboard.find(params[:id])
     twixingboard.twixnotes << new_twixnote
-
-    respond_to do |format|
-      format.json { render :json => new_twixnote }
-    end
+    # binding.pry
+    # respond_to do |format|
+      # format.json { render :json => new_twixnote.to_json}
+    # end
+     render :json => new_twixnote.to_json
   end
 
 private

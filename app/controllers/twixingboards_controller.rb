@@ -20,7 +20,9 @@ class TwixingboardsController < ApplicationController
   end
 
   def show
-     @twixingboard = Twixingboard.find(params[:id])
+     # @twixingboard = Twixingboard.find(params[:id])
+     @twixingboard = current_user.twixingboards.first
+
   end
   
   def fetch

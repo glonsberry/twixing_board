@@ -52,20 +52,18 @@ Twixingboard.prototype.fetchTwixnotes = function(){
         twixnote.playSound();
       }
 
-      $that.renderTwixnotes();
       $that.renderSliders();
     }
   })
 };
 
-Twixingboard.prototype.renderTwixnotes = function(){
-  for (var i = 1; i < this.twixnotesArr.length; ++i ){
 
-
-  }
-}
 
 Twixingboard.prototype.renderSliders = function(){
+  $('.slider-container').html('');
+  $('.twixnotes_container').html('');
+
+
   for (var i = 1; i < this.twixnotesArr.length; ++i ){
     var elem = $('<div>').html(this.twixnotesArr[i].name);
     var eachvar = i;
@@ -207,15 +205,17 @@ Twixnote.prototype.playSound = function(){
 
 // }
 
-function searchTwixnote(search_term){
+
+Twixingboard.prototype.searchTwixnote = function(search_term){
   $that = this;
 
   $.ajax({
-      url:'/twixingboards/' + getTwixingboardId() + '/search',
-      method: 'GET',
-      dataType: 'json',
-      data: { search_term: search_term},
-      success: function(data){
+
+    url:'/twixingboards/' + getTwixingboardId() + '/search',
+    method: 'GET',
+    dataType: 'json',
+    data: { search_term: search_term},
+    success: function(data){
 
            twixnote = new Twixnote(data);
            // pitch = Math.random() * 800
@@ -227,7 +227,11 @@ function searchTwixnote(search_term){
 
 
         //set volume to zero by default?
-        console.log("searched:" + twixnote);
+
+        $that.twixnotesArr.push(twixnote);
+        $that.renderSliders();
+
+
         return twixnote;
       }
     });
@@ -236,9 +240,18 @@ function searchTwixnote(search_term){
 $(function(){
 //the code here is just to see it working on the page.  Change it however you want.
 
-var twixnoteArr = []
-myTwixingboard = new Twixingboard(1);
-myTwixingboard.fetchTwixnotes();
+
+  var twixnoteArr = []
+  myTwixingboard = new Twixingboard(1);
+  myTwixingboard.fetchTwixnotes();
+
+  $('.search_form').submit(function(e){
+    e.preventDefault();
+
+    myTwixingboard.searchTwixnote($('.search_term').val())
+  })
+
+
 });
 
 // for (var i = 0; i < myTwixingboard.twixnotesArr.length; ++i){
