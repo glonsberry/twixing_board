@@ -15,7 +15,7 @@ class Twixnote < ActiveRecord::Base
     end
 
     client.search(search_term, :result_type => "recent").take(1).each do |tweet|
-      tweetsArr << tweet.rate
+      tweetsArr << tweet.text
     end
     frequency = tweetsArr.length/(tweetsArr.first - tweetsArr.last)
     total_tweets_string = tweetsArr.join

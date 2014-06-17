@@ -6,7 +6,6 @@ function Twixnote(obj){
   this.name = obj.name;
   this.mood = obj.mood;
   this.frequency = obj.frequency;
-  this.mood = obj.mood;
 }
 
 function Twixingboard(id){
@@ -158,8 +157,23 @@ function searchTwixnote(search_term){
 
  $(function(){
 //the code here is just to see it working on the page.  Change it however you want.
+
+
   myTwixingboard = new Twixingboard(1);
   myTwixingboard.fetchTwixnotes();
+
+  
+ debugger;
+//   for (var i = 0; i < myTwixingboard.twixnotesArr; ++i){
+//     console.log(myTwixingboard.twixnotesArr[i])
+  // }
+  // arr = myTwixingboard.twixnotesArr;
+  // debugger;
+  // $.each(myTwixingboard.twixnotesArr, function(twixnote){
+  //   var elem = $('<div>').html(twixnote.name);
+  //   $('.twixnote_container').append(elem);
+
+
 
 
   });
