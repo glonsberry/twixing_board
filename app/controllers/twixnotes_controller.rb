@@ -25,6 +25,7 @@ before_action :require_login
 
   def search
     new_twixnote = Twixnote.new
+    binding.pry
     new_twixnote = Twixnote.create(new_twixnote.get_twixnote(params[:search_term]))
     twixingboard = Twixingboard.find(params[:id])
     twixingboard.twixnotes << new_twixnote
