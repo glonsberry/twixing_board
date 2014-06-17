@@ -10,19 +10,26 @@ class TwixingboardsController < ApplicationController
 
   def new
 
+
   end
 
   def create
-    twixingboard = Twixingboard.create(twixingboard_params)
-    current_user.twixingboards << twixingboard
+    if current_user.twixingboards.count == 0 
+      twixingboard = Twixingboard.create(twixingboard_params)
+      current_user.twixingboards << twixingboard
+      
+    end
+    twixingboard = current_user.twixingboards.first
 
     redirect_to "/twixingboards/#{ twixingboard.id }"
   end
 
-  def show
-     # @twixingboard = Twixingboard.find(params[:id])
+  def fetchboard
+     if current_user.twixingboards.count == 0
+      @twixingboard = Twixingboard.create(name: "Twixingboard", twixer_id: current_user.id)
+    end
      @twixingboard = current_user.twixingboards.first
-
+     redirect_to "/twixingboards/#{ @twixingboard.id }/show"
   end
   
   def fetch

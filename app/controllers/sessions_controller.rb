@@ -6,11 +6,11 @@ class SessionsController < ApplicationController
   def create # login
     twixer = login(params[:email], params[:password])
 
-    
+
   if twixer
-    # id = twixer.twixingboards.first.id.to_s
-    # redirect_to 'twixingboards/' + id + '/show'
-    redirect_to profile_path
+    #@id = twixer.twixingboards.first.id.to_s
+    #redirect_to 'twixingboards/' + @id + '/show'
+    redirect_to "/twixingboards/fetchboard"
   else
     render :new
   end
