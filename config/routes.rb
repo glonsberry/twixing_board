@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  root 'welcome#index'
   get '/login' => 'sessions#new', as: 'login'  
   post '/sessions' => 'sessions#create', as: 'sessions'
   delete '/logout' => 'sessions#destroy', as: 'logout'  
@@ -10,7 +11,7 @@ Rails.application.routes.draw do
   get '/profile' => 'twixers#profile', as: 'profile'  
   get '/profile/:id/edit' => 'twixers#edit', as: 'edit'
   put '/profile/:id' => 'twixers#update'
-  root 'welcome#index'
+
 
   get '/twixingboard' =>'twixingboards#index'
   get '/twixingboards/:id/show' => 'twixingboards#show', as: 'show'

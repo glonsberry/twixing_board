@@ -26,7 +26,7 @@ class TwixingboardsController < ApplicationController
   def fetch
     twixnotesArr = []
     twixingboard = Twixingboard.find(params[:id])
-    twixnotesArr = twixingboard.twixnotes
+    twixnotesArr = twixingboard.twixnotes.take(10)
 
     respond_to do |format|
       format.json {render :json => twixnotesArr}

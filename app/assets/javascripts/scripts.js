@@ -46,8 +46,11 @@ Twixingboard.prototype.fetchTwixnotes = function(){
     dataType: 'json',
     data: {id: getTwixingboardId()},
     success: function(data){
-      console.log(data);
-      $that.twixnotesArr = data;
+      for (var i = 0; i < data.length; ++i){
+        twixnote = new Twixnote(data[i])
+        $that.twixnotesArr.push(twixnote)
+      }
+     
       $that.renderTwixnotes();
       $that.renderSliders();
     }
