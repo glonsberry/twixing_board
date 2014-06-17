@@ -179,15 +179,23 @@ function searchTwixnote(search_term){
 }
 
 
-
-
  $(function(){
-//the code here is just to see it working on the page.  Change it however you want.
-  myTwixingboard = new Twixingboard(1);
-  myTwixingboard.fetchTwixnotes();
+// the code here is just to see it working on the page.  Change it however you want.
+      myTwixingboard = new Twixingboard(0);
+      myTwixingboard.fetchTwixnotes();
+      myarray = myTwixingboard.twixnotesArr
+  
+    //   $.each(myTwixingboard.twixnotesArr, function(twixnote){
+    //     element = $('<div>').html(twixnote.name)
+    //   $('.twix-note-container').append(element)
+    // })
 
 
   });
+
+
+
+
 
 
 

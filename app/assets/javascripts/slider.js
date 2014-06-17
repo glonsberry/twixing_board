@@ -65,14 +65,14 @@
 
 
 
-var Slider = 
+
 
   $(function() {
 
     var oscillator = context.createOscillator();
     var gainNode = context.createGain();
     oscillator.connect(gainNode);
-    oscillator.frequency.value = twixnote.frequency;
+    oscillator.frequency.value = 440;
 
     gainNode.connect(context.destination);
     oscillator.start(0);
