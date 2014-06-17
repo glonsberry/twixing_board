@@ -67,7 +67,7 @@ Twixingboard.prototype.renderTwixnotes = function(){
 Twixingboard.prototype.renderSliders = function(){
   for (var i = 1; i < this.twixnotesArr.length; ++i ){
     var elem = $('<div>').html(this.twixnotesArr[i].name);
-    var soundElem = $('<div>').html("<input id='volume' type='range' min='0' max='2' step='0.1' value='0.0'>");
+    var soundElem = $('<div>').html("<input id="+i+" type='range' min='0' max='2' step='0.1' value='0.0'>");
     $('.slider-container').append(soundElem);
     $('.twixnotes_container').append(elem);
   }
@@ -91,14 +91,13 @@ Twixnote.prototype.deleteTwixnote = function(){
 Twixnote.prototype.playSound = function(){
 
   var oscillator = context.createOscillator();
-  var gainNode = context.createGain();
-  gainNode.gain.value = 1;
-  oscillator.connect(gainNode);
-  gainNode.connect(context.destination);
-
+  var gain = context.createGain();
+  var filter = context.createBiquadFilter();
+  filter.type = 0;
    if (this.frequency < 1){
       var intTime = 6000 - (this.frequency * (Math.random() * 500))}
   else {var intTime = (1 / this.frequency) * 10000};
+  oscillator.connect(gain);
       if (this.mood === "joy")
         {var moodFreq = Math.random() * (400-150) + 150}
       else if (this.mood === "sadness")
@@ -112,13 +111,36 @@ Twixnote.prototype.playSound = function(){
       else if (this.mood === "anger")
         {var moodFreq = Math.random() * (900-801) + 801}
   oscillator.frequency.value = moodFreq
-  gainNode.start(0);
-  // soundNode =  {
-  //   oscillator: oscillator,
-  //   gainNode: gainNode
-  // };
-  // return soundNode;
-};
+
+  gain.connect(filter);
+  filter.connect(context.destination);
+  oscillator.start(0);
+  gain.gain.value = 0; //change volume here
+
+  setInterval(function(intTime){
+    var now = context.currentTime;
+    // gain.gain.cancelScheduledValues( now );
+    // gain.gain.setValueAtTime(gain.gain.value, now);
+    // gain.gain.linearRampToValueAtTime(1 , now + 0.2);
+    // oscillator.connect(context.destination)
+        filter.frequency.value = 10000;
+  }, intTime);
+
+  setInterval(function(intTime){
+    var now = context.currentTime;
+    // gain.gain.cancelScheduledValues( now );
+    // gain.gain.setValueAtTime(gain.gain.value, now);
+    // gain.gain.linearRampToValueAtTime(0 , now + 0.2)
+        // oscillator.disconnect(0);
+
+        filter.frequency.value = 0;
+         }
+    ,  intTime + 50 );
+    gain.gain.value = 0; //change volume here
+
+  this.gainNode = gain.gain
+  return this.gainNode
+}
 
 
 // function newSoundObject(intTime, pitch){
