@@ -11,7 +11,7 @@ before_action :require_login
   #   end
   #   twixingboard = Twixingboard.find(params[:id])
   #   twixingboard.twixnotes << new_twixnote
-    
+
   # end
 
   def destroy
@@ -19,7 +19,7 @@ before_action :require_login
     Twixnote.delete(delete_id)
 
     respond_to do |format|
-      format.json { render :json =>{ deleted: delete_id } } 
+      format.json { render :json =>{ deleted: delete_id } }
     end
   end
 

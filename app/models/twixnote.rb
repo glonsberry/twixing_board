@@ -21,35 +21,37 @@ class Twixnote < ActiveRecord::Base
       tweetsArr << tweet.created_at
       tweetsTextArr << tweet.text
     end
+
     if (tweetsArr.first - tweetsArr.last) != 0
       frequency = tweetsArr.length/(tweetsArr.first - tweetsArr.last)
     else
       frequency = 100
     end
-    
+
     tweetsTextArr.each do |tweet|
     tweetFixed = tweet.gsub(/\W/," ")
     emotion = SadPanda.emotion(tweetFixed)
+
     moodArr << emotion
        case emotion
        when "joy"
-        mood[:joy] += 1 
+        mood[:joy] += 1
        when "anger"
-        mood[:anger] += 1 
+        mood[:anger] += 1
        when "sadness"
         mood[:sadness] += 1
        when "disgust"
         mood[:disgust] += 1
        when "surprise"
-        mood[:surprise] += 1 
+        mood[:surprise] += 1
        when "fear"
-        mood[:fear] += 1 
+        mood[:fear] += 1
        else
-        mood[:ambiguous] += 1 
+        mood[:ambiguous] += 1
        end
 
     end
-    mood[:ambiguous] = 0 
+    mood[:ambiguous] = 0
     mood_val =  mood.max_by{|k,v| v}[0].to_s
     twixnote = { :name => search_term, :frequency => frequency, :mood => mood_val }
   end
