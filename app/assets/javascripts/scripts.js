@@ -19,7 +19,8 @@
   }
 
   function getTwixingboardId(){
-    return window.location.pathname.split('/')[2];
+    //return window.location.pathname.split('/')[2];
+    return $('.twixingboard_id').attr('id');
   }
 
 //This will save a twixnote to the database.  But you need a refresh to see it.
@@ -61,6 +62,27 @@ Twixingboard.prototype.fetchTwixnotes = function(){
       $that.renderSliders();
     }
   })
+};
+Twixingboard.prototype.fetchTwixingboard = function(){
+  $that = $this;
+  $.ajax({
+  url:'/twixingboards/' + getTwixingboardId() + '/fetch',
+  method: 'GET',
+  dataType: 'json',
+  data: {id: getTwixingboardId()},
+  success: function(data){
+    for (var i = 0; i < data.length; ++i){
+      twixnote = new Twixnote(data[i])
+      $that.twixnotesArr.push(twixnote)
+       twixnote.playSound();
+
+    }
+
+    $that.renderSliders();
+  }
+})
+
+
 };
 
 

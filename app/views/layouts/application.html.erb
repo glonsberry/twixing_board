@@ -5,18 +5,21 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
-
+<div class="container">
 <% if current_user %>
     <p>Logged in as <%= current_user.email %></p>
+
     <%= link_to "LogOut", logout_path, method: :delete %>
   <% else %>
     <div class="signup"><%= link_to 'SignUp', signup_path %></div>
     <div class="login"><%= link_to 'LogIn', login_path %></div>
+
 <% end %>
 
 <%= yield %>
-
+</div>
 </body>
 </html>
