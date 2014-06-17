@@ -1,21 +1,21 @@
   context = new webkitAudioContext();
 
 
-function Twixnote(obj){
-  this.id = obj.id;
-  this.name = obj.name;
-  this.mood = obj.mood;
-  this.frequency = obj.frequency;
-}
+  function Twixnote(obj){
+    this.id = obj.id;
+    this.name = obj.name;
+    this.mood = obj.mood;
+    this.frequency = obj.frequency;
+  }
 
-function Twixingboard(id){
-  this.id = id;
-  this.twixnotesArr = [];
-}
+  function Twixingboard(id){
+    this.id = id;
+    this.twixnotesArr = [];
+  }
 
-function getTwixingboardId(){
-  return window.location.pathname.split('/')[2];
-}
+  function getTwixingboardId(){
+    return window.location.pathname.split('/')[2];
+  }
 
 //This will save a twixnote to the database.  But you need a refresh to see it.
 //So you'l need to put a function in the success function to put
@@ -25,14 +25,14 @@ Twixnote.prototype.saveTwixnote = function(){
   $that = this;
 
   $.ajax({
-      url:'/twixingboards/' + getTwixingboardId() + '/twixnotes',
+    url:'/twixingboards/' + getTwixingboardId() + '/twixnotes',
 
-      method: 'POST',
-      dataType: 'json',
-      data: { twixnote: { name: $that.name, frequency: $that.frequency }},
-      success: function(){
-        console.log("saved" + $that)
-      }
+    method: 'POST',
+    dataType: 'json',
+    data: { twixnote: { name: $that.name, frequency: $that.frequency }},
+    success: function(){
+      console.log("saved" + $that)
+    }
   });
 };
 
@@ -50,19 +50,13 @@ Twixingboard.prototype.fetchTwixnotes = function(){
         twixnote = new Twixnote(data[i])
         $that.twixnotesArr.push(twixnote)
       }
-     
-      // $that.renderTwixnotes();
+
       $that.renderSliders();
     }
   })
 };
 
-// Twixingboard.prototype.renderTwixnotes = function(){
-//   for (var i = 1; i < this.twixnotesArr.length; ++i ){
-    
-    
-//   }
-// }
+
 
 Twixingboard.prototype.renderSliders = function(){
   $('.slider-container').html('');
@@ -71,24 +65,54 @@ Twixingboard.prototype.renderSliders = function(){
 
   for (var i = 1; i < this.twixnotesArr.length; ++i ){
     var elem = $('<div>').html(this.twixnotesArr[i].name);
-    var soundElem = $('<div>').html("<input id='volume' type='range' min='0' max='2' step='0.1' value='0.0'>");
-    $('.slider-container').append(soundElem);
+    var $slider = $('<div>').addClass("slider-vertical").slider({
+      orientation: "vertical", 
+      range: "min", 
+      min: 0, 
+      max: 100, 
+      value: 0, 
+      slide: function(event, ui){
+        console.log(ui.value);
+      }
+    })
+    $('.slider-container').append($slider);
     $('.twixnotes_container').append(elem);
+
+    
+    //var sliderElem = $('<div>').html("<input id='volume' type='range' min='0' max='2' step='0.05' value='0.0'>");
+    
+    // var sliderElem = 
+    //   $(function() {
+    // $( ".slider-container" ).slider({
+    //   orientation: "vertical",
+    //   range: "min",
+    //   min: 0,
+    //   max: 100,
+    //   value: 60,
+    //   slide: function( event, ui ) {
+    //     $( "#amount" ).val( ui.value );
+    //   }
+    // });
+    // $( "#amount" ).val( $( ".slider-container" ).slider( "value" ) );
+    
+    //$('.slider-container').append(sliderElem);
+    
   }
 }
+
 
 Twixnote.prototype.deleteTwixnote = function(){
   $that = this;
 
   $.ajax({
-      url:'/twixingboards/' + getTwixingboardId() + '/delete/twixnotes',
-      method: 'DELETE',
-      dataType: 'json',
-      data: { twixnote: {id: $that.id, frequency: $that.frequency, name: $that.name }},
+    url:'/twixingboards/' + getTwixingboardId() + '/delete/twixnotes',
+    method: 'DELETE',
+    dataType: 'json',
+    data: { twixnote: {id: $that.id, frequency: $that.frequency, name: $that.name }},
 
-      success: function(){
-        console.log("deleted")
-      }
+    success: function(){
+      console.log("deleted")
+    }
   });
 }
 
@@ -164,46 +188,44 @@ function newSoundObject(intTime, pitch){
     // gain.gain.setValueAtTime(gain.gain.value, now);
     // gain.gain.linearRampToValueAtTime(0 , now + 0.2)
     oscillator.connect(context.destination)
-      }
-    ,  intTime + 20 )
+  }
+  ,  intTime + 20 )
 }
 
 Twixingboard.prototype.searchTwixnote = function(search_term){
   $that = this;
 
   $.ajax({
-      url:'/twixingboards/' + getTwixingboardId() + '/search',
-      method: 'GET',
-      dataType: 'json',
-      data: { search_term: search_term },
-      error: function (xhr, ajaxOptions, thrownError) {
-        alert(xhr.status);
-        alert(thrownError);
-      },
-      success: function(data){
-        console.log(data);
-        debugger;
-        twixnote = new Twixnote(data);
-        pitch = Math.random() * 800
-        if (twixnote.frequency < 1){
-          var intTime = 6000 - (twixnote.frequency * (Math.random() * 500))}
-        else {var intTime = (1 / twixnote.frequency) * 10000};
+
+    url:'/twixingboards/' + getTwixingboardId() + '/search',
+    method: 'GET',
+    dataType: 'json',
+    data: { search_term: search_term},
+    success: function(data){
+
+     twixnote = new Twixnote(data);
+     pitch = Math.random() * 800
+     if (twixnote.frequency < 1){
+      var intTime = 6000 - (twixnote.frequency * (Math.random() * 500))}
+      else {var intTime = (1 / twixnote.frequency) * 10000};
 
         // var newFreq = freq * x // function to convert frequency data to rhythm data
         var soundObject = new newSoundObject(intTime, pitch);
 
         //set volume to zero by default?
-        debugger;
+
         $that.twixnotesArr.push(twixnote);
         $that.renderSliders();
 
+
         return twixnote;
       }
-  });
+    });
 }
 
- $(function(){
+$(function(){
 //the code here is just to see it working on the page.  Change it however you want.
+
 
   var twixnoteArr = []
   myTwixingboard = new Twixingboard(1);
@@ -215,12 +237,25 @@ Twixingboard.prototype.searchTwixnote = function(search_term){
     myTwixingboard.searchTwixnote($('.search_term').val())
   })
 
+
 });
 
+// for (var i = 0; i < myTwixingboard.twixnotesArr.length; ++i){
+//   $( ".create-slider" ).slider({
+//     orientation: "vertical",
+//     range: "min",
+//     min: 0,
+//     max: 100,
+//     value: 0,
+
+      // slide: function( event, ui ) {
+      //   gainNode.gain.value = ui.value / 100;
+      // }
+    // });
 
 
-  
- 
+
+
 //   for (var i = 0; i < myTwixingboard.twixnotesArr; ++i){
 //     console.log(myTwixingboard.twixnotesArr[i])
   // }
