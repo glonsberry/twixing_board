@@ -46,22 +46,29 @@ Twixingboard.prototype.fetchTwixnotes = function(){
     dataType: 'json',
     data: {id: getTwixingboardId()},
     success: function(data){
-      console.log(data);
       for (var i = 0; i < data.length; ++i){
         twixnote = new Twixnote(data[i])
         $that.twixnotesArr.push(twixnote)
       }
 
       $that.renderTwixnotes();
-
-
+      $that.renderSliders();
     }
   })
 };
 
 Twixingboard.prototype.renderTwixnotes = function(){
   for (var i = 1; i < this.twixnotesArr.length; ++i ){
+
+
+  }
+}
+
+Twixingboard.prototype.renderSliders = function(){
+  for (var i = 1; i < this.twixnotesArr.length; ++i ){
     var elem = $('<div>').html(this.twixnotesArr[i].name);
+    var soundElem = $('<div>').html("<input id='volume' type='range' min='0' max='2' step='0.1' value='0.0'>");
+    $('.slider-container').append(soundElem);
     $('.twixnotes_container').append(elem);
   }
 }
@@ -84,11 +91,14 @@ Twixnote.prototype.deleteTwixnote = function(){
 Twixnote.prototype.playSound = function(){
 
   var oscillator = context.createOscillator();
-  var gain = context.createGain();
+  var gainNode = context.createGain();
+  gainNode.gain.value = 1;
+  oscillator.connect(gainNode);
+  gainNode.connect(context.destination);
+
    if (this.frequency < 1){
       var intTime = 6000 - (this.frequency * (Math.random() * 500))}
   else {var intTime = (1 / this.frequency) * 10000};
-  oscillator.connect(gain);
       if (this.mood === "joy")
         {var moodFreq = Math.random() * (400-150) + 150}
       else if (this.mood === "sadness")
@@ -102,29 +112,14 @@ Twixnote.prototype.playSound = function(){
       else if (this.mood === "anger")
         {var moodFreq = Math.random() * (900-801) + 801}
   oscillator.frequency.value = moodFreq
+  gainNode.start(0);
+  // soundNode =  {
+  //   oscillator: oscillator,
+  //   gainNode: gainNode
+  // };
+  // return soundNode;
+};
 
-  gain.connect(context.destination);
-  oscillator.start(0);
-  gain.gain.value = 0; //change volume here
-
-  setInterval(function(intTime){
-    var now = context.currentTime;
-    // gain.gain.cancelScheduledValues( now );
-    // gain.gain.setValueAtTime(gain.gain.value, now);
-    // gain.gain.linearRampToValueAtTime(1 , now + 0.2);
-    oscillator.connect(context.destination)
-  }, intTime);
-
-  setInterval(function(intTime){
-    var now = context.currentTime;
-    // gain.gain.cancelScheduledValues( now );
-    // gain.gain.setValueAtTime(gain.gain.value, now);
-    // gain.gain.linearRampToValueAtTime(0 , now + 0.2)
-        oscillator.disconnect(0);
-      }
-    ,  intTime + 50 );
-
-}
 
 // function newSoundObject(intTime, pitch){
 
@@ -179,11 +174,7 @@ function searchTwixnote(search_term){
          return twixnote;
       }
   });
-
 }
-
-
-
 
  $(function(){
 //the code here is just to see it working on the page.  Change it however you want.
@@ -191,6 +182,9 @@ function searchTwixnote(search_term){
   var twixnoteArr = []
   myTwixingboard = new Twixingboard(1);
   myTwixingboard.fetchTwixnotes();
+
+});
+
 
 
 
@@ -204,11 +198,6 @@ function searchTwixnote(search_term){
   // $.each(myTwixingboard.twixnotesArr, function(twixnote){
   //   var elem = $('<div>').html(twixnote.name);
   //   $('.twixnote_container').append(elem);
-
-
-
-
-  });
 
 
 

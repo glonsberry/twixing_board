@@ -16,49 +16,33 @@
       <% unless @results.nil? %>
         tweets per second = <%= @results %>
       <% end %>
+<h3>my twixnotes</h3>
+  <div class="slider-container">
+    <!-- <input id="volume" type="range" min="0" max="2" step="0.1" value="0.0"/> -->
+    <div class="twixnotes_container">
+  </div>
 
+  </div>
+  
 
-  <div class="sliders">
+<!--   <div class="sliders">
     <div class="slider-vertical1">
       <label for="amount1">Volume:</label>
       <input type="text" id="amount1" style="border:0; color:#f6931f; font-weight:bold;">
 
       <div class="slider-vertical" id="twix-note-1" style="height:200px;"></div>
     </div>
-
-    <div class="slider-vertical2">
-      <label for="amount2">Volume:</label>
-      <input type="text" id="amount2" style="border:0; color:#f6931f; font-weight:bold;">
-
-    <div class="slider-vertical" id="twix-note-2" style="height:200px;"></div>
-    </div>
-
-    <div class="slider-vertical3">
-      <label for="amount3">Volume:</label>
-      <input type="text" id="amount3" style="border:0; color:#f6931f; font-weight:bold;">
-
-      <div class="slider-vertical" id="twix-note-3" style="height:200px;"></div>
-    </div>
-
-    <div class="slider-vertical4">
-      <label for="amount4">Volume:</label>
-      <input type="text" id="amount4" style="border:0; color:#f6931f; font-weight:bold;">
-
-      <div class="slider-vertical" id="twix-note-4" style="height:200px;"></div>
-    </div>
-  </div>
-
+ -->
   <hr>
 
-<h3>my twixnotes</h3>
-<div class="twixnotes_container">
-  </div>
+
 
   <form method="get" action="/twixingboards/<%= @twixingboard.id%>/show">
     <input type="textfield" placeholder="hashtag search..." name="search_term">
     <button type="submit">Search</button>
   </form>
 
-
+  
+</div>
   </body>
   </html>

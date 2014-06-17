@@ -1,6 +1,13 @@
 <h2>enter the name of your Twixingboard</h2>
 
-<form method="post" action="/twixingboards">
+<!-- <form method="post" action="/twixingboards">
   <%= token_tag %>
   <input type="textfield" placeholder="name" name="[twixingboard]name">
-  <button type="submit">submit</button>
+  <button type="submit">submit</button> -->
+
+  <div class="name-twixboard-div">
+    <%= form_for @twixingboard do |f| %>
+      Twixing Board Name: <%= f.text_field :name %>
+        <%= f.submit %>
+    <% end %>
+  </div>

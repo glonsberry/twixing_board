@@ -1,9 +1,15 @@
 class TwixingboardsController < ApplicationController
   before_action :require_login
-  def index 
+
+  
+  def index
+    
+    
   end
 
+
   def new
+
   end
 
   def create
@@ -20,7 +26,7 @@ class TwixingboardsController < ApplicationController
   def fetch
     twixnotesArr = []
     twixingboard = Twixingboard.find(params[:id])
-    twixnotesArr = twixingboard.twixnotes
+    twixnotesArr = twixingboard.twixnotes.take(10)
 
     respond_to do |format|
       format.json {render :json => twixnotesArr}
