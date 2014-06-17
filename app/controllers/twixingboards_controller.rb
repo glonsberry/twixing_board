@@ -3,27 +3,35 @@ class TwixingboardsController < ApplicationController
 
   
   def index
-    
-    
   end
 
-
   def new
-
   end
 
   def create
-    twixingboard = Twixingboard.create(twixingboard_params)
-    current_user.twixingboards << twixingboard
+    if current_user.twixingboards.count == 0 
+      twixingboard = Twixingboard.create(twixingboard_params)
+      current_user.twixingboards << twixingboard
+    end
+    twixingboard = current_user.twixingboards.first
 
     redirect_to "/twixingboards/#{ twixingboard.id }"
   end
 
-  def show
-     # @twixingboard = Twixingboard.find(params[:id])
-     @twixingboard = current_user.twixingboards.first
-
+  def fetchboard
+     if current_user.twixingboards.count == 0
+      Twixingboard.create(name: "Twixingboard", twixer_id: current_user.id)
+    end
+    # @twixingboard = current_user.twixingboards.first
+     # @my_board = current_user.twixingboards.first
+     redirect_to "/twixingboards/myboard"
+     #redirect_to "/twixingboards/#{ @twixingboard.id }/show"
   end
+
+  def myboard
+    @twixingboard = current_user.twixingboards.first
+  end
+
   
   def fetch
     twixnotesArr = []

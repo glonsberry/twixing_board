@@ -8,23 +8,31 @@ Rails.application.routes.draw do
   get '/signup' => 'twixers#new', as: 'signup'
   post '/twixers' => 'twixers#create', as: 'twixers'
   
-  get '/profile' => 'twixers#profile', as: 'profile'  
-  get '/profile/:id/edit' => 'twixers#edit', as: 'edit'
-  put '/profile/:id' => 'twixers#update'
+  # get '/profile' => 'twixers#profile', as: 'profile'  
+  # get '/profile/:id/edit' => 'twixers#edit', as: 'edit'
+  # put '/profile/:id' => 'twixers#update'
 
 
-  get '/twixingboard' =>'twixingboards#index'
+  # get '/twixingboard' =>'twixingboards#index'
   get '/twixingboards/:id/show' => 'twixingboards#show', as: 'show'
-  post '/twixingboards' => 'twixingboards#create'
+  #post '/twixingboards' => 'twixingboards#create', as: 'create'
   get '/twixingboards/:id/search' => 'twixnotes#search'
+  get '/twixingboards/fetchboard' => 'twixingboards#fetchboard'
 
   delete '/twixingboards/:id/delete/twixnotes' => 'twixnotes#destroy'
 
   get '/twixingboards/:id/fetch' => 'twixingboards#fetch'
+  get '/twixingboards/myboard' => 'twixingboards#myboard'
 
-    resources :twixingboards do
-      resources :twixnotes
-  end 
+  #   resources :twixingboards do
+  #     resources :twixnotes
+  # end 
+
+
+
+
+
+
 
 end
 
