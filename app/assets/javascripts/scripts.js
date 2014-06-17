@@ -94,9 +94,9 @@ Twixnote.prototype.playSound = function(){
       else if (this.mood = "surprise")
         {var moodFreq = Math.random() * (650-501) + 501}
       else if (this.mood = "fear")
-        {var moodFreq = Math.random() * (800-651) + 651}
+        {var moodFreq = Math.random() * (1000-851) + 851}
       else if (this.mood = "anger")
-        {var moodFreq = Math.random() * (950-801) + 801}
+        {var moodFreq = Math.random() * (1050-801) + 801}
   oscillator.frequency.value = moodFreq
 
   gain.connect(context.destination);
@@ -187,11 +187,11 @@ function searchTwixnote(search_term){
   var twixnoteArr = []
   myTwixingboard = new Twixingboard(1);
   myTwixingboard.fetchTwixnotes();
- 
 
 
-  
- 
+
+
+
 //   for (var i = 0; i < myTwixingboard.twixnotesArr; ++i){
 //     console.log(myTwixingboard.twixnotesArr[i])
   // }
