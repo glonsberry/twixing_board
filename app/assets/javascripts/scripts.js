@@ -49,7 +49,8 @@ Twixingboard.prototype.fetchTwixnotes = function(){
       for (var i = 0; i < data.length; ++i){
         twixnote = new Twixnote(data[i])
         $that.twixnotesArr.push(twixnote)
-        twixnote.playSound();
+         twixnote.playSound();
+
       }
 
       $that.renderSliders();
@@ -68,7 +69,8 @@ Twixingboard.prototype.renderSliders = function(){
     var elem = $('<div>').html(this.twixnotesArr[i].name);
     var eachvar = i;
     var gainNode = myTwixingboard.twixnotesArr[i].gainNode;
-    var $slider = $('<div>').addClass("slider-vertical").slider({
+    (function(gainNode){
+      var $slider = $('<div>').addClass("slider-vertical"+i).slider({
       orientation: "vertical",
       range: "min",
       min: 0,
@@ -79,9 +81,13 @@ Twixingboard.prototype.renderSliders = function(){
           gainNode.value = volume;
           console.log(ui.value);
       }
-    })
-    $('.slider-container').append($slider);
-    $('.twixnotes_container').append(elem);
+     })
+      $('.slider-container').append($slider);
+      $('.twixnotes_container').append(elem);
+    })(gainNode);
+
+
+
 
 
     //var sliderElem = $('<div>').html("<input id='volume' type='range' min='0' max='2' step='0.05' value='0.0'>");
@@ -230,7 +236,6 @@ Twixingboard.prototype.searchTwixnote = function(search_term){
 
         $that.twixnotesArr.push(twixnote);
         $that.renderSliders();
-
 
         return twixnote;
       }
