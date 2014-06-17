@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   delete '/twixingboards/:id/delete/twixnotes' => 'twixnotes#destroy'
 
   get '/twixingboards/:id/fetch' => 'twixingboards#fetch'
+  get '/twixingboards/myboard' => 'twixingboards#myboard'
 
   #   resources :twixingboards do
   #     resources :twixnotes
