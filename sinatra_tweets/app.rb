@@ -50,11 +50,6 @@ client.search("#things", :result_type => "recent").take(3).each do |tweet|
 
 end
 
-    tweetsArr.each do |tweet|
-      tweetsArr << tweet
-     # moodArr << SadPanda.emotion(tweet)
-      #polarityArr << SadPanda.polarity(tweet)
-    end
     puts tweetsArr
 
     

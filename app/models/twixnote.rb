@@ -2,8 +2,11 @@ class Twixnote < ActiveRecord::Base
   belongs_to :twixingboard
 
   def get_twixnote(search_term)
-    tweetsArr=[]
+    tweetsArr = []
     twixnote = {}
+    tweetsTextArr = []
+    mood = { :joy => 1, :sadness => 1, :anger => 1, :surprise => 1, :fear => 1, :disgust => 1, :ambiguous => 1 }
+    mood_val = ""
     moodArr = []
 
 
@@ -14,16 +17,42 @@ class Twixnote < ActiveRecord::Base
       config.access_token_secret = ENV['TWITTER_ACCESS_TOKEN_SECRET']
     end
 
-    client.search(search_term, :result_type => "recent").take(1).each do |tweet|
+    client.search(search_term, :result_type => "recent", :lang => "en").take(100).each do |tweet|
       tweetsArr << tweet.created_at
+      tweetsTextArr << tweet.text
     end
-    frequency = tweetsArr.length/(tweetsArr.first - tweetsArr.last)
-    total_tweets_string = tweetsArr.join
-    tweetsArr.each do |tweet|
-      #moodArr << SadPanda.emotion(tweet)
+    if (tweetsArr.first - tweetsArr.last) != 0
+      frequency = tweetsArr.length/(tweetsArr.first - tweetsArr.last)
+    else
+      frequency = 100
     end
+    
+    tweetsTextArr.each do |tweet|
+    tweetFixed = tweet.gsub(/\W/," ")
+    emotion = SadPanda.emotion(tweetFixed)
+    # moodArr << emotion
+    #    case emotion
+    #    when "joy"
+    #     mood = { :joy => mood[:joy] + 1 }
+    #    when "anger"
+    #     mood = { :anger => mood[:anger] + 1 }
+    #    when "sadness"
+    #     mood[:sadness] = mood[:sadness] + 1 
+    #    when "disgust"
+    #     mood = { :disgust => mood[:disgust] + 1 }
+    #    when "surprise"
+    #     mood = { :surprise => mood[:surprise] + 1 }
+    #    when "fear"
+    #     mood = { :fear => mood[:fear] + 1 }
+    #    else
+    #     mood = { :ambiguous => mood[:ambiguous] + 1 }
+    #    end
 
-    twixnote = { :name => search_term, :frequency => frequency, :mood => mood }
+    # end
+    
+    mood[:ambiguous] = 0 
+    mood_val =  mood.max_by{|k,v| v}
+    twixnote = { :name => search_term, :frequency => frequency }
   end
-
+end
 end

@@ -48,11 +48,19 @@ Twixingboard.prototype.fetchTwixnotes = function(){
     success: function(data){
       console.log(data);
       $that.twixnotesArr = data;
+      $that.renderTwixnotes();
 
 
     }
   })
 };
+
+Twixingboard.prototype.renderTwixnotes = function(){
+  for (var i = 1; i < this.twixnotesArr.length; ++i ){
+    var elem = $('<div>').html(this.twixnotesArr[i].name);
+    $('.twixnotes_container').append(elem);
+  }
+}
 
 Twixnote.prototype.deleteTwixnote = function(){
   $that = this;
@@ -158,12 +166,14 @@ function searchTwixnote(search_term){
  $(function(){
 //the code here is just to see it working on the page.  Change it however you want.
 
-
+  var twixnoteArr = []
   myTwixingboard = new Twixingboard(1);
   myTwixingboard.fetchTwixnotes();
+ 
+
 
   
- debugger;
+ 
 //   for (var i = 0; i < myTwixingboard.twixnotesArr; ++i){
 //     console.log(myTwixingboard.twixnotesArr[i])
   // }

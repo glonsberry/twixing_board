@@ -36,6 +36,6 @@ before_action :require_login
 
 private
   def twixnote_params
-    params.require(:twixnote).permit(:name, :frequency)
+    params.require(:twixnote).permit(:name, :frequency, :mood)
   end
 end
