@@ -49,13 +49,23 @@ Twixingboard.prototype.fetchTwixnotes = function(){
       console.log(data);
       $that.twixnotesArr = data;
       $that.renderTwixnotes();
+      $that.renderSliders();
     }
   })
 };
 
 Twixingboard.prototype.renderTwixnotes = function(){
   for (var i = 1; i < this.twixnotesArr.length; ++i ){
+    
+    
+  }
+}
+
+Twixingboard.prototype.renderSliders = function(){
+  for (var i = 1; i < this.twixnotesArr.length; ++i ){
     var elem = $('<div>').html(this.twixnotesArr[i].name);
+    var soundElem = $('<div>').html("<input id='volume' type='range' min='0' max='2' step='0.1' value='0.0'>");
+    $('.slider-container').append(soundElem);
     $('.twixnotes_container').append(elem);
   }
 }
