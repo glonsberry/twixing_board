@@ -26,3 +26,7 @@
   padding: 50px, 50px, 50px, 50px; 
 }
 */
+
+.slider-vertical {
+  display: block;
+}

@@ -124,7 +124,6 @@ Twixnote.prototype.deleteTwixnote = function(){
     method: 'DELETE',
     dataType: 'json',
     data: { twixnote: {id: $that.id, frequency: $that.frequency, name: $that.name }},
-
     success: function(){
 
       console.log("deleted")
