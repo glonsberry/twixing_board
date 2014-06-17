@@ -45,16 +45,11 @@ tweetsArr = []
 moodArr = []
 polarityArr = []
 
-client.search("#USA", :result_type => "recent").take(1).each do |tweet|
-  tweetsArr << tweet.text + " " + tweet.created_at.to_s
+client.search("#things", :result_type => "recent").take(3).each do |tweet|
+  tweetsArr << tweet.created_at
 
 end
 
-    tweetsArr.each do |tweet|
-      tweetsArr << tweet
-     # moodArr << SadPanda.emotion(tweet)
-      #polarityArr << SadPanda.polarity(tweet)
-    end
     puts tweetsArr
 
     
