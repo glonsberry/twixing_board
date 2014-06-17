@@ -16,7 +16,7 @@
       <% unless @results.nil? %>
         tweets per second = <%= @results %>
       <% end %>
-
+<h3>my twixnotes</h3>
   <div class="slider-container">
     <!-- <input id="volume" type="range" min="0" max="2" step="0.1" value="0.0"/> -->
     <div class="twixnotes_container">
@@ -35,7 +35,7 @@
  -->
   <hr>
 
-<h3>my twixnotes</h3>
+
 
   <form method="get" action="/twixingboards/<%= @twixingboard.id%>/show">
     <input type="textfield" placeholder="hashtag search..." name="search_term">
