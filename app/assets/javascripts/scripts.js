@@ -51,7 +51,7 @@ Twixingboard.prototype.fetchTwixnotes = function(){
         twixnote = new Twixnote(data[i])
         $that.twixnotesArr.push(twixnote)
       }
-     
+
       $that.renderTwixnotes();
 
 
@@ -89,18 +89,18 @@ Twixnote.prototype.playSound = function(){
       var intTime = 6000 - (this.frequency * (Math.random() * 500))}
   else {var intTime = (1 / this.frequency) * 10000};
   oscillator.connect(gain);
-      if (this.mood = "joy")
-        {var moodFreq = Math.random() * (250-100) + 150}
-      else if (this.mood = "sadness")
-        {var moodFreq = Math.random() * (400-251) + 251}
-      else if (this.mood = "disgust")
+      if (this.mood === "joy")
+        {var moodFreq = Math.random() * (400-150) + 150}
+      else if (this.mood === "sadness")
+        {var moodFreq = Math.random() * (4500-251) + 251}
+      else if (this.mood === "disgust")
         {var moodFreq = Math.random() * (500-401) + 401}
-      else if (this.mood = "surprise")
+      else if (this.mood === "surprise")
         {var moodFreq = Math.random() * (650-501) + 501}
-      else if (this.mood = "fear")
-        {var moodFreq = Math.random() * (1000-851) + 851}
-      else if (this.mood = "anger")
-        {var moodFreq = Math.random() * (1050-801) + 801}
+      else if (this.mood === "fear")
+        {var moodFreq = Math.random() * (800-651) + 651}
+      else if (this.mood === "anger")
+        {var moodFreq = Math.random() * (900-801) + 801}
   oscillator.frequency.value = moodFreq
 
   gain.connect(context.destination);
