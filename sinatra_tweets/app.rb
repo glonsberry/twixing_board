@@ -45,8 +45,8 @@ tweetsArr = []
 moodArr = []
 polarityArr = []
 
-client.search("#USA", :result_type => "recent").take(3).each do |tweet|
-  tweetsArr << tweet.text + " " + tweet.rate
+client.search("#things", :result_type => "recent").take(3).each do |tweet|
+  tweetsArr << tweet.created_at
 
 end
 
