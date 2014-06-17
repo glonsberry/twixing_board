@@ -61,13 +61,7 @@
 
   // })
 
-
-
-
-
-
-
-  $(function() {
+//////// What Andrew wrote ///////
 
     var oscillator = context.createOscillator();
     var gainNode = context.createGain();
@@ -79,7 +73,7 @@
     gainNode.gain.value = 0;
 
 
-    $( ".slider-vertical" ).slider({
+    $( ".create-slider" ).slider({
       orientation: "vertical",
       range: "min",
       min: 0,
@@ -89,8 +83,3 @@
         gainNode.gain.value = ui.value / 100;
       }
     });
-  });
-  
-
-
-
