@@ -66,6 +66,7 @@ Twixingboard.prototype.renderSliders = function(){
 
 
   for (var i = 1; i < this.twixnotesArr.length; ++i ){
+    this.twixnotesArr[i].playSound();
     var elem = $('<div>').html(this.twixnotesArr[i].name);
     var eachvar = i;
     var gainNode = myTwixingboard.twixnotesArr[i].gainNode;
