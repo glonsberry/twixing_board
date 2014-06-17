@@ -66,6 +66,7 @@ Twixingboard.prototype.renderTwixnotes = function(){
 
 Twixingboard.prototype.renderSliders = function(){
   for (var i = 1; i < this.twixnotesArr.length; ++i ){
+    var elem = $('<div>').html(this.twixnotesArr[i].name);
     var $slider = $('<div>').addClass("slider-vertical").slider({
       orientation: "vertical", 
       range: "min", 
@@ -77,8 +78,9 @@ Twixingboard.prototype.renderSliders = function(){
       }
     })
     $('.slider-container').append($slider);
+    $('.twixnotes_container').append(elem);
 
-    //var elem = $('<div>').html(this.twixnotesArr[i].name);
+    
     //var sliderElem = $('<div>').html("<input id='volume' type='range' min='0' max='2' step='0.05' value='0.0'>");
     
     // var sliderElem = 
@@ -96,7 +98,7 @@ Twixingboard.prototype.renderSliders = function(){
     // $( "#amount" ).val( $( ".slider-container" ).slider( "value" ) );
     
     //$('.slider-container').append(sliderElem);
-    //$('.twixnotes_container').append(elem);
+    
   }
 }
 
