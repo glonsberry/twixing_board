@@ -1,7 +1,25 @@
 body {
   background-color: #164F57;
-  color: #D3D5CF;
+  color: white;
   font-family: 'Codystar', cursive;
+}
+
+form {
+  font-family: 'Codystar', cursive;
+}
+
+#email {
+  font-family: 'Codystar', cursive;
+    background-color: white;
+
+}
+
+#search_term {
+    font-family: 'Codystar', cursive;
+
+}
+.twixWrapper {
+  font-family: 'UnifrakturMaguntia', cursive;
 }
 .title{
   color: #D3D5CF;
@@ -10,7 +28,7 @@ body {
 }
 h2{
   color: #D3D5CF;
-  font-family: 'Play', sans-serif;
+  font-family: 'Codystar', cursive;
 
 }
 a {

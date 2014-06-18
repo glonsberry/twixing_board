@@ -198,7 +198,7 @@ function addTwixnote(twixnote){
         {color = 'blue'}
       else if (twixnote.mood === "surprise")
         {color = 'yellow'};
-var twixNameElem = $('<div>').attr("id", "twixid"+twixnote.id).html(twixnote.name).css({"background-color": color,"border-radius": "10px", "text-align": "center", "border":"2px solid"
+var twixNameElem = $('<div>').attr("id", "twixid"+twixnote.id).html(twixnote.name).css({"background-color": "black","color":"white","border-radius": "10px", "text-align": "center", "border":"2px solid", "border-color": color
 })
     var deleteElem = $('<button>').html("<i class='fa fa-trash-o'></i>").addClass('delete-btn');
 
