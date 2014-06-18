@@ -90,15 +90,24 @@ Twixingboard.prototype.fetchTwixingboard = function(){
 Twixingboard.prototype.renderSliders = function(){
   // $('.slider-container').html('');
   $('.twixnotes_container').html('');
+  that = this;
 
 
-
-  for (var i = 1; i < this.twixnotesArr.length; ++i ){
-    var twixWrapperEl = $('<div>').addClass('two columns twixWrapper')
+  for (var i = 0; i < this.twixnotesArr.length; ++i ){
+    var twixWrapperEl = $('<div>')
+          .addClass('two columns twixWrapper')
+          .attr('name', this.twixnotesArr[i].id)
     this.twixnotesArr[i].playSound();
     var twixNameElem = $('<div>').html(this.twixnotesArr[i].name);
     var eachvar = i;
-    var deleteElem = $('<button>').html("<i class='fa fa-trash-o'></i>");
+    var deleteElem = $('<button>').html('<i class="fa fa-trash-o"></i>');
+
+    $(deleteElem).click(function(){
+      var id =  $(this).parent().attr('name');
+      deleteTwixnote(id);
+      $(this).parent().remove();
+    
+    })
     var gainNode = myTwixingboard.twixnotesArr[i].gainNode;
     var $slider = undefined;
     (function(gainNode){
@@ -147,14 +156,29 @@ Twixingboard.prototype.renderSliders = function(){
 }
 
 
-Twixnote.prototype.deleteTwixnote = function(){
+// Twixnote.prototype.deleteTwixnote = function(){
+//   $that = this;
+
+//   $.ajax({
+//     url:'/twixingboards/' + getTwixingboardId() + '/delete/twixnotes',
+//     method: 'DELETE',
+//     dataType: 'json',
+//     data: { twixnote: {id: $that.id, frequency: $that.frequency, name: $that.name }},
+//     success: function(){
+
+//       console.log("deleted")
+//     }
+//   });
+// }
+
+deleteTwixnote = function(twixnoteId){
   $that = this;
 
   $.ajax({
     url:'/twixingboards/' + getTwixingboardId() + '/delete/twixnotes',
     method: 'DELETE',
     dataType: 'json',
-    data: { twixnote: {id: $that.id, frequency: $that.frequency, name: $that.name }},
+    data: { twixnote: {id: twixnoteId }},
     success: function(){
 
       console.log("deleted")
@@ -274,32 +298,57 @@ Twixnote.prototype.playSound = function(){
 
 
 Twixingboard.prototype.searchTwixnote = function(search_term){
+  debugger;
   $that = this;
+  if (this.twixnoteLimit()){
+     $('.message').html("You have reached maximun twixitude.  You must delete a slider before you add another one.");
+    
+  }
+  else{
+    $.ajax({
 
-  $.ajax({
+      url:'/twixingboards/' + getTwixingboardId() + '/search',
+      method: 'GET',
+      dataType: 'json',
+      data: { search_term: search_term},
+      success: function(data){
 
-    url:'/twixingboards/' + getTwixingboardId() + '/search',
-    method: 'GET',
-    dataType: 'json',
-    data: { search_term: search_term},
-    success: function(data){
+             twixnote = new Twixnote(data);
+             // pitch = Math.random() * 800
+             //  if (twixnote.frequency < 1){
+             //    var intTime = 6000 - (twixnote.frequency * (Math.random() * 500))}
+             //  else {var intTime = (1 / twixnote.frequency) * 10000};
 
-           twixnote = new Twixnote(data);
-           // pitch = Math.random() * 800
-           //  if (twixnote.frequency < 1){
-           //    var intTime = 6000 - (twixnote.frequency * (Math.random() * 500))}
-           //  else {var intTime = (1 / twixnote.frequency) * 10000};
-
-          // var soundObject = new newSoundObject(intTime, pitch);
+            // var soundObject = new newSoundObject(intTime, pitch);
 
 
-        //set volume to zero by default?
+          //set volume to zero by default?
 
-        $that.twixnotesArr.push(twixnote);
-        $that.renderSliders();
-        return twixnote;
+          $that.twixnotesArr.push(twixnote);
+          $that.renderSliders();
+          return twixnote;
+
       }
     });
+  }
+};
+
+Twixingboard.prototype.twixnoteLimit = function(){
+  var limit = 10;
+  if (this.twixnotesArr.length >= 10) {
+    console.log("limit reached");
+
+   return true;
+  }
+  else{
+   
+    return false
+
+  }
+
+  
+
+
 }
 
 $(function(){
