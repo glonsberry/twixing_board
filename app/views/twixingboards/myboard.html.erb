@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Twixingboard</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-</head>
 
-<body>
   <hr>
 
   <div class="twixingboard_id" id="<%= @twixingboard.id %>"></div>
   <!--admittedly not secure-->
 
+
+ <h1 class="title">twixingboard</h1>
+  <hr>
+
+  <div class="twixingboard_id" id="<%= @twixingboard.id %>"></div>
+  <!--admittedly not secure-->
 
   <div class="results-container">
   <!--   <div class="slider-container"> -->
@@ -22,17 +18,13 @@
     </div>
   </div>
 
-  </br>
 
   <hr>
-  </br>
 
   <form class="search_form">
     <input type="textfield" placeholder="twitter search..." class="search_term">
-    <button type="submit" class="search-btn">Search</button>
+    <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
   </form>
   <div class="message"></div>
 
 
-</body>
-</html>
