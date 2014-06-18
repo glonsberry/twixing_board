@@ -1,0 +1,15 @@
+body {
+  background-color: #164F57;
+  color: #D3D5CF;
+  font-family: 'Play', sans-serif;
+}
+a {
+  text-decoration: none;
+  color: #D3D5CF;
+
+}
+a:visited {
+  text-decoration: none;
+  color: #D3D5CF;
+
+}
