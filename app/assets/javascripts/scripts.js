@@ -331,7 +331,6 @@ $(function(){
 //     console.log(myTwixingboard.twixnotesArr[i])
   // }
   // arr = myTwixingboard.twixnotesArr;
-  // debugger;
   // $.each(myTwixingboard.twixnotesArr, function(twixnote){
   //   var elem = $('<div>').html(twixnote.name);
   //   $('.twixnote_container').append(elem);
