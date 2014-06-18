@@ -1,21 +1,21 @@
 body {
   background-color: #164F57;
   color: white;
-  font-family: 'Codystar', cursive;
+  font-family: 'UnifrakturMaguntia', cursive;
 }
 
 form {
-  font-family: 'Codystar', cursive;
+  font-family: 'UnifrakturMaguntia', cursive;
 }
 
 #email {
-  font-family: 'Codystar', cursive;
-    background-color: white;
+font-family: 'UnifrakturMaguntia', cursive;
+background-color: white;
 
 }
 
 #search_term {
-    font-family: 'Codystar', cursive;
+    font-family: 'UnifrakturMaguntia', cursive;
 
 }
 .twixWrapper {
@@ -23,22 +23,22 @@ form {
 }
 .title{
   color: #D3D5CF;
-  font-family: 'Codystar', cursive;
+  font-family: 'UnifrakturMaguntia', cursive;
   text-align: right;
 }
 h2{
   color: #D3D5CF;
-  font-family: 'Codystar', cursive;
+  font-family: 'UnifrakturMaguntia', cursive;
 
 }
 a {
-  font-family: 'Codystar', cursive;
+  font-family: 'UnifrakturMaguntia', cursive;
   text-decoration: none;
   color: #D3D5CF;
 
 }
 a:visited {
-  font-family: 'Codystar', cursive;
+  font-family: 'UnifrakturMaguntia', cursive;
   text-decoration: none;
   color: #D3D5CF;
 
@@ -70,3 +70,5 @@ margin-top: 14px;
 .clearfix { display: block; }
 /* close commented backslash hack */
 
+/*  font-family: 'Codystar', cursive;
+*/

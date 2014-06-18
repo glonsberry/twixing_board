@@ -87,7 +87,6 @@ Twixingboard.prototype.renderSliders = function(){
 
 deleteTwixnote = function(twixnoteId){
   $that = this;
-  debugger;
   for (i = 0; i < myTwixingboard.twixnotesArr.length; i++)
   {
     if (myTwixingboard.twixnotesArr[i].id == parseInt(twixnoteId)){
@@ -188,14 +187,14 @@ Twixingboard.prototype.searchTwixnote = function(search_term){
 };
 
 function addTwixnote(twixnote){
-  
+
   var twixWrapperEl = $('<div>')
           .addClass('two columns twixWrapper')
           .attr('name', twixnote.id);
   twixnote.playSound();
     var color = ""
       if (twixnote.mood === "anger")
-        {color = '#CFF09E'}
+        {color = '#75905a'}
       else if (twixnote.mood === "sadness")
         {color = '#79BD9A'}
       else if (twixnote.mood === "disgust")
@@ -205,7 +204,7 @@ function addTwixnote(twixnote){
       else if (twixnote.mood === "joy")
         {color = '#0B486B'}
       else if (twixnote.mood === "surprise")
-        {color = '#a2e55f'};
+        {color = '#6eb1b4'};
 var twixNameElem = $('<div>').attr("id", "twixid"+twixnote.id).html(twixnote.name).css({"background-color": "#182233","color":"white","border-radius": "10px", "text-align": "center", "border":"2px solid", "border-color": color
 })
     var deleteElem = $('<button>').html("<i class='fa fa-trash-o'></i>").addClass('delete-btn');
