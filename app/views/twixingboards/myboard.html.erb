@@ -1,25 +1,17 @@
-
-  <hr>
-
-  <div class="twixingboard_id" id="<%= @twixingboard.id %>"></div>
-  <!--admittedly not secure-->
-
-
- <h1 class="title">twixingboard</h1>
-  <hr>
+<%= render '/header.html.erb' %>
 
   <div class="twixingboard_id" id="<%= @twixingboard.id %>"></div>
   <!--admittedly not secure-->
 
-  <div class="results-container">
+  <div class="results-container clearfix">
   <!--   <div class="slider-container"> -->
-     <div class="twixnotes_container">
+     <div class="twixnotes_container clearfix">
 
     </div>
   </div>
 
 
-  <hr>
+  <hr class="bottom_line">
 
   <form class="search_form">
     <input type="textfield" placeholder="twitter search..." class="search_term">
