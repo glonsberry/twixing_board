@@ -181,13 +181,14 @@ Twixingboard.prototype.searchTwixnote = function(search_term){
       success: function(data){
         twixnote = new Twixnote(data);
         addTwixnote(twixnote);
+        myTwixingboard.twixnotesArr.push(twixnote);
       }
     });
   }
 };
 
 function addTwixnote(twixnote){
-  debugger;
+  
   
   var twixWrapperEl = $('<div>')
           .addClass('two columns twixWrapper')
