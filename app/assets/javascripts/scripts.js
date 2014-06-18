@@ -96,6 +96,7 @@ deleteTwixnote = function(twixnoteId){
     success: function(){
 
       console.log("deleted")
+
     }
   });
 }
@@ -107,7 +108,7 @@ Twixnote.prototype.playSound = function(){
   var filter = context.createBiquadFilter();
   filter.type = 0;
    if (this.frequency < 1){
-      var intTime = 6000 - (this.frequency * (Math.random() * 500))}
+      var intTime = 7000 - (this.frequency * (Math.random() * 1500))}
   else {var intTime = (1 / this.frequency) * 10000};
   oscillator.connect(gain);
       if (this.mood === "joy")
@@ -133,17 +134,17 @@ Twixnote.prototype.playSound = function(){
 
   setInterval(function(intTime){
     var now = context.currentTime;
-    $("#twixid"+that.id).animate({"border-radius":"80px", "height":"21px", "width":"97px", "opacity":"1"}, 200);
+    $("#twixid"+that.id).animate({"border-radius":"80px", "height":"21px", "width":"97px", "opacity":"1"}, 100);
 
     filter.frequency.value = 10000;
-  }, intTime * 2);
+  }, intTime );
 
 setInterval(function(intTime){
-    $("#twixid"+that.id).animate({"opacity":".95"}, 50);
-  }, intTime);
+    $("#twixid"+that.id).animate({"opacity":".9"}, 100);
+  }, intTime );
   setInterval(function(intTime){
     $("#twixid"+that.id).animate({"border-radius":"79px", "height":"20px", "width":"95px"}, 50);
-  }, intTime * 2);
+  }, intTime );
 
   setInterval(function(intTime){
     var now = context.currentTime;
@@ -161,7 +162,7 @@ setInterval(function(intTime){
 Twixingboard.prototype.searchTwixnote = function(search_term){
   $that = this;
   if (this.twixnoteLimit()){
-     $('.message').html("You have reached maximun twixitude.  You must delete a slider before you add another one.");
+     $('.message').html("You have reached maximum twixitude.  You must delete a slider before you add another one.");
 
   }
   else{
@@ -187,18 +188,18 @@ function addTwixnote(twixnote){
   twixnote.playSound();
     var color = ""
       if (twixnote.mood === "anger")
-        {color = 'red'}
+        {color = '#CFF09E'}
       else if (twixnote.mood === "sadness")
-        {color = 'purple'}
+        {color = '#79BD9A'}
       else if (twixnote.mood === "disgust")
-        {color = 'orange'}
+        {color = '#A8DBA8'}
       else if (twixnote.mood === "fear")
-        {color = 'green'}
+        {color = '#3B8686'}
       else if (twixnote.mood === "joy")
-        {color = 'blue'}
+        {color = '#0B486B'}
       else if (twixnote.mood === "surprise")
-        {color = 'yellow'};
-var twixNameElem = $('<div>').attr("id", "twixid"+twixnote.id).html(twixnote.name).css({"background-color": "black","color":"white","border-radius": "10px", "text-align": "center", "border":"2px solid", "border-color": color
+        {color = '#a2e55f'};
+var twixNameElem = $('<div>').attr("id", "twixid"+twixnote.id).html(twixnote.name).css({"background-color": "#182233","color":"white","border-radius": "10px", "text-align": "center", "border":"2px solid", "border-color": color
 })
     var deleteElem = $('<button>').html("<i class='fa fa-trash-o'></i>").addClass('delete-btn');
 
