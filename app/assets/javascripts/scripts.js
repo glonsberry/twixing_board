@@ -69,8 +69,6 @@ Twixingboard.prototype.fetchTwixingboard = function(){
   })
 };
 
-
-
 Twixingboard.prototype.renderSliders = function(){
   // $('.slider-container').html('');
   $('.twixnotes_container').html('');
@@ -158,9 +156,7 @@ Twixingboard.prototype.searchTwixnote = function(search_term){
       data: { search_term: search_term},
       success: function(data){
         twixnote = new Twixnote(data);
-        addTwixnote(twixnote);
-        
-
+        addTwixnote(twixnote); 
       }
     });
   }
@@ -210,14 +206,12 @@ function addTwixnote(twixnote){
           saveVolume = ui.value;
         },
      })
-
-
     })(gainNode);
-      twixWrapperEl.append($slider);
-      twixWrapperEl.append(deleteElem);
-      twixWrapperEl.append(twixNameElem);
-      $('.twixnotes_container').append(twixWrapperEl)
-}
+    twixWrapperEl.append($slider);
+    twixWrapperEl.append(deleteElem);
+    twixWrapperEl.append(twixNameElem);
+    $('.twixnotes_container').append(twixWrapperEl)
+};
 
 Twixingboard.prototype.twixnoteLimit = function(){
   var limit = 10;
@@ -227,7 +221,7 @@ Twixingboard.prototype.twixnoteLimit = function(){
   else{
    return false
   }
-}
+};
 
 $(function(){
 
