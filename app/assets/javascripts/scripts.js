@@ -87,6 +87,7 @@ Twixingboard.prototype.renderSliders = function(){
 
 deleteTwixnote = function(twixnoteId){
   $that = this;
+
   for (i = 0; i < myTwixingboard.twixnotesArr.length; i++)
   {
     if (myTwixingboard.twixnotesArr[i].id == parseInt(twixnoteId)){
@@ -181,6 +182,7 @@ Twixingboard.prototype.searchTwixnote = function(search_term){
       success: function(data){
         twixnote = new Twixnote(data);
         addTwixnote(twixnote);
+        myTwixingboard.twixnotesArr.push(twixnote);
       }
     });
   }
@@ -242,8 +244,8 @@ var twixNameElem = $('<div>').attr("id", "twixid"+twixnote.id).html(twixnote.nam
 };
 
 Twixingboard.prototype.twixnoteLimit = function(){
-  var limit = 10;
-  if (this.twixnotesArr.length >= 10) {
+  var limit = 8;
+  if (this.twixnotesArr.length >= 8) {
     return true;
   }
   else{
