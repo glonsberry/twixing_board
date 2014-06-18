@@ -108,20 +108,21 @@ var color = ""
       else if (this.twixnotesArr[i].mood === "fear")
         {color = 'green'}
       else if (this.twixnotesArr[i].mood === "joy")
-        {color = 'blue'}
+        {color = 'darkblue'}
       else if (this.twixnotesArr[i].mood === "surprise")
         {color = 'yellow'};
-    var twixNameElem = $('<div>').attr("id", "twixid:"+i).html(this.twixnotesArr[i].name).css({"background-color": color,"border-radius": "10px", "text-align": "center"}).animate({"height": "30px", "width":"100px"}, 5000);    var eachvar = i;
+    var twixNameElem = $('<div>').attr("id", "twixid"+this.twixnotesArr[i].id).html(this.twixnotesArr[i].name).css({"background-color": color,"border-radius": "10px", "text-align": "center", "border":"2px solid"
+})
     var deleteElem = $('<button>').html('<i class="fa fa-trash-o"></i>');
+    var gainNode = myTwixingboard.twixnotesArr[i].gainNode;
 
     $(deleteElem).click(function(){
       var id =  $(this).parent().attr('name');
       deleteTwixnote(id);
       $(this).parent().remove();
-    
+      gainNode.value = 0;
     })
 
-    var gainNode = myTwixingboard.twixnotesArr[i].gainNode;
     var $slider = undefined;
     (function(gainNode){
       $slider = $('<div>').addClass("slider-vertical"+i).slider({
@@ -254,24 +255,24 @@ Twixnote.prototype.playSound = function(){
 
   setInterval(function(intTime){
     var now = context.currentTime;
-    // gain.gain.cancelScheduledValues( now );
-    // gain.gain.setValueAtTime(gain.gain.value, now);
-    // gain.gain.linearRampToValueAtTime(1 , now + 0.2);
-    // oscillator.connect(context.destination)
-        filter.frequency.value = 10000;
+    $("#twixid"+that.id).animate({"border-radius":"80px", "height":"22px", "width":"97px", "opacity":"1"}, 200);
+
+    filter.frequency.value = 10000;
+  }, intTime * 2);
+
+setInterval(function(intTime){
+    $("#twixid"+that.id).animate({"opacity":".95"}, 100);
   }, intTime);
-
-
+  setInterval(function(intTime){
+    $("#twixid"+that.id).animate({"border-radius":"79px", "height":"20px", "width":"95px"}, 100);
+  }, intTime * 2);
 
   setInterval(function(intTime){
     var now = context.currentTime;
-    // gain.gain.cancelScheduledValues( now );
-    // gain.gain.setValueAtTime(gain.gain.value, now);
-    // gain.gain.linearRampToValueAtTime(0 , now + 0.2)
 
         filter.frequency.value = 0;
          }
-    ,  Math.random() * 30 );
+    ,  30 );
     gain.gain.value = 0; //change volume here
 
   this.gainNode = gain.gain
@@ -311,11 +312,10 @@ Twixnote.prototype.playSound = function(){
 
 
 Twixingboard.prototype.searchTwixnote = function(search_term){
-  debugger;
   $that = this;
   if (this.twixnoteLimit()){
      $('.message').html("You have reached maximun twixitude.  You must delete a slider before you add another one.");
-    
+
   }
   else{
     $.ajax({
@@ -349,7 +349,7 @@ Twixingboard.prototype.searchTwixnote = function(search_term){
         {color = 'blue'}
       else if (twixnote.mood === "surprise")
         {color = 'yellow'};
-    var twixNameElem = $('<div>').html(twixnote.name).css("background-color", color);
+    var twixNameElem = $('<div>').attr("id", "twixid:"+twixnote.id).html(twixnote.name).css({"background-color": color,"border-radius": "10px", "text-align": "center"})
     var deleteElem = $('<button>').html("<i class='fa fa-trash-o'></i>");
     var gainNode = twixnote.gainNode;
     var $slider = undefined;
@@ -373,7 +373,7 @@ Twixingboard.prototype.searchTwixnote = function(search_term){
 
     })(gainNode);
 
-        twixnotesArr.push(twixnote);
+        myTwixingboard.twixnotesArr.push(twixnote);
         return twixnote;
 
       }
@@ -389,12 +389,12 @@ Twixingboard.prototype.twixnoteLimit = function(){
    return true;
   }
   else{
-   
+
     return false
 
   }
 
-  
+
 
 
 }
