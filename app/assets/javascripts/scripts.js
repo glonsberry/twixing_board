@@ -88,17 +88,21 @@ Twixingboard.prototype.fetchTwixingboard = function(){
 
 
 Twixingboard.prototype.renderSliders = function(){
-  $('.slider-container').html('');
+  // $('.slider-container').html('');
   $('.twixnotes_container').html('');
 
 
-  for (var i = 0; i < this.twixnotesArr.length; ++i ){
+
+  for (var i = 1; i < this.twixnotesArr.length; ++i ){
+    var twixWrapperEl = $('<div>').addClass('two columns twixWrapper')
     this.twixnotesArr[i].playSound();
-    var elem = $('<div>').html(this.twixnotesArr[i].name);
+    var twixNameElem = $('<div>').html(this.twixnotesArr[i].name);
     var eachvar = i;
+    var deleteElem = $('<button>').html("<i class='fa fa-trash-o'></i>");
     var gainNode = myTwixingboard.twixnotesArr[i].gainNode;
+    var $slider = undefined;
     (function(gainNode){
-      var $slider = $('<div>').addClass("slider-vertical"+i).slider({
+      $slider = $('<div>').addClass("slider-vertical"+i).slider({
       orientation: "vertical",
       range: "min",
       min: 0,
@@ -108,10 +112,13 @@ Twixingboard.prototype.renderSliders = function(){
           var volume = ui.value / 100;
           gainNode.value = volume;
           console.log(ui.value);
-      }
+      },
      })
-      $('.slider-container').append($slider);
-      $('.twixnotes_container').append(elem);
+      twixWrapperEl.append($slider);
+      twixWrapperEl.append(deleteElem);
+      twixWrapperEl.append(twixNameElem);
+      $('.twixnotes_container').append(twixWrapperEl)
+      
     })(gainNode);
 
 
@@ -148,8 +155,8 @@ Twixnote.prototype.deleteTwixnote = function(){
     method: 'DELETE',
     dataType: 'json',
     data: { twixnote: {id: $that.id, frequency: $that.frequency, name: $that.name }},
-
     success: function(){
+
       console.log("deleted")
     }
   });
@@ -290,7 +297,6 @@ Twixingboard.prototype.searchTwixnote = function(search_term){
 
         $that.twixnotesArr.push(twixnote);
         $that.renderSliders();
-
         return twixnote;
       }
     });
@@ -334,6 +340,8 @@ $(function(){
   // $.each(myTwixingboard.twixnotesArr, function(twixnote){
   //   var elem = $('<div>').html(twixnote.name);
   //   $('.twixnote_container').append(elem);
+
+
 
 
 

@@ -1,19 +1,28 @@
-/*.results-container {
-  width: 900px;
-
-}
-.slider-container{
-  padding: 50px 50px 50px 50px;
-  margin: 20px 20px 20px 20px;
-  display: inline-block;
-  height: 100px;
+/*.slider-vertical {
+  height: auto;
   width: auto;
+  padding: 50px, 50px, 50px, 50px; 
+  margin: 50px, 50px, 50px, 50px;
 }
 
-.twixnote_container{
-  padding: 50px 50px 50px 50px;
-  
+.twixnote_container {
+  height: auto;
+  width: auto;
+  margin: 50px, 50px, 50px, 50px;
+  padding: 50px, 50px, 50px, 50px; 
 }
 
+.slider-container {
+  height: auto;
+  width: auto;
+  margin: 50px, 50px, 50px, 50px;
+  padding: 50px, 50px, 50px, 50px; 
+}
+
+.results-container {
+  height: auto;
+  width: auto;
+  margin: 50px, 50px, 50px, 50px;
+  padding: 50px, 50px, 50px, 50px; 
+}
 */
-
