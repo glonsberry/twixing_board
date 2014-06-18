@@ -87,7 +87,7 @@ Twixingboard.prototype.renderSliders = function(){
 
 deleteTwixnote = function(twixnoteId){
   $that = this;
-  debugger;
+
   for (i = 0; i < myTwixingboard.twixnotesArr.length; i++)
   {
     if (myTwixingboard.twixnotesArr[i].id == parseInt(twixnoteId)){
@@ -187,6 +187,7 @@ Twixingboard.prototype.searchTwixnote = function(search_term){
 };
 
 function addTwixnote(twixnote){
+  debugger;
   
   var twixWrapperEl = $('<div>')
           .addClass('two columns twixWrapper')
@@ -242,8 +243,8 @@ var twixNameElem = $('<div>').attr("id", "twixid"+twixnote.id).html(twixnote.nam
 };
 
 Twixingboard.prototype.twixnoteLimit = function(){
-  var limit = 10;
-  if (this.twixnotesArr.length >= 10) {
+  var limit = 8;
+  if (this.twixnotesArr.length >= 8) {
     return true;
   }
   else{
