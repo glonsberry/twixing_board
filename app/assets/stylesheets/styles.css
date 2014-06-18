@@ -1,11 +1,11 @@
 body {
   background-color: #164F57;
   color: #D3D5CF;
-  font-family: 'Play', sans-serif;
+  font-family: 'Codystar', cursive;
 }
 .title{
   color: #D3D5CF;
-  font-family: 'Play', sans-serif;
+  font-family: 'Codystar', cursive;
   text-align: right;
 }
 h2{
@@ -14,11 +14,13 @@ h2{
 
 }
 a {
+  font-family: 'Codystar', cursive;
   text-decoration: none;
   color: #D3D5CF;
 
 }
 a:visited {
+  font-family: 'Codystar', cursive;
   text-decoration: none;
   color: #D3D5CF;
 

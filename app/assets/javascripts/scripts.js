@@ -111,7 +111,7 @@ Twixnote.prototype.playSound = function(){
   else {var intTime = (1 / this.frequency) * 10000};
   oscillator.connect(gain);
       if (this.mood === "joy")
-        {var moodFreq = Math.random() * (300-150) + 150}
+        {var moodFreq = Math.random() * (400-100) + 100}
       else if (this.mood === "sadness")
         {var moodFreq = Math.random() * (450-251) + 251}
       else if (this.mood === "disgust")
@@ -133,16 +133,16 @@ Twixnote.prototype.playSound = function(){
 
   setInterval(function(intTime){
     var now = context.currentTime;
-    $("#twixid"+that.id).animate({"border-radius":"80px", "height":"22px", "width":"97px", "opacity":"1"}, 200);
+    $("#twixid"+that.id).animate({"border-radius":"80px", "height":"21px", "width":"97px", "opacity":"1"}, 200);
 
     filter.frequency.value = 10000;
   }, intTime * 2);
 
 setInterval(function(intTime){
-    $("#twixid"+that.id).animate({"opacity":".95"}, 100);
+    $("#twixid"+that.id).animate({"opacity":".95"}, 50);
   }, intTime);
   setInterval(function(intTime){
-    $("#twixid"+that.id).animate({"border-radius":"79px", "height":"20px", "width":"95px"}, 100);
+    $("#twixid"+that.id).animate({"border-radius":"79px", "height":"20px", "width":"95px"}, 50);
   }, intTime * 2);
 
   setInterval(function(intTime){
