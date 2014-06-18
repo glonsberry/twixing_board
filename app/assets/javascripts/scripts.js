@@ -93,7 +93,7 @@ Twixingboard.prototype.renderSliders = function(){
 
 
 
-  for (var i = 1; i < this.twixnotesArr.length; ++i ){
+  for (var i = 0; i < this.twixnotesArr.length; ++i ){
     var twixWrapperEl = $('<div>').addClass('two columns twixWrapper')
     this.twixnotesArr[i].playSound();
     var twixNameElem = $('<div>').html(this.twixnotesArr[i].name);
@@ -107,18 +107,18 @@ Twixingboard.prototype.renderSliders = function(){
       range: "min",
       min: 0,
       max: 100,
-      value: 1,
+      value: gainNode.value * 100,
       slide: function(event, ui){
           var volume = ui.value / 100;
           gainNode.value = volume;
-          console.log(ui.value);
-      },
+          saveVolume = ui.value;
+        },
      })
       twixWrapperEl.append($slider);
       twixWrapperEl.append(deleteElem);
       twixWrapperEl.append(twixNameElem);
       $('.twixnotes_container').append(twixWrapperEl)
-      
+
     })(gainNode);
 
 
