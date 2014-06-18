@@ -3,6 +3,11 @@ body {
   color: #D3D5CF;
   font-family: 'Play', sans-serif;
 }
+.title{
+  color: #D3D5CF;
+  font-family: 'Play', sans-serif;
+  text-align: right;
+}
 a {
   text-decoration: none;
   color: #D3D5CF;
@@ -13,3 +18,12 @@ a:visited {
   color: #D3D5CF;
 
 }
+.slider-vertical {
+  margin-left: 40px;
+}
+
+.delete-btn {
+margin-left: 31px;
+margin-top: 14px;
+}
+

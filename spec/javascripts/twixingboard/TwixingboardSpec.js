@@ -1,4 +1,4 @@
-describe("Player", function() {
+describe("Twixingboard", function() {
  var twixingboard;
  var twixnote;
 
@@ -6,8 +6,12 @@ describe("Player", function() {
     twixingboard = new Twixingboard(1);
   });
 
+  it "runs the test function", function() {
+    expect(test(1))toEqual(2);
+  }
+
   it("searches for and saves twixnote", function() {
-  searchTwixnote("#worldcup");
+  //searchTwixnote("#worldcup");
   
   expect(player.currentlyPlayingSong).toEqual(song);
 

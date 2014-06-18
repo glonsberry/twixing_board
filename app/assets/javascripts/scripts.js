@@ -1,5 +1,10 @@
   context = new webkitAudioContext();
 
+  function test(val){
+    return val + 1;
+  }
+
+
   function Twixnote(obj){
     this.id = obj.id;
     this.name = obj.name;
@@ -183,7 +188,7 @@ function addTwixnote(twixnote){
         {color = 'yellow'};
     var twixNameElem = $('<div>').attr("id", "twixid:").html(twixnote.name).css({"background-color": color,"border-radius": "10px", "text-align": "center"}).animate({"height": "30px", "width":"100px"}, 5000);    
     //var eachvar = i;
-    var deleteElem = $('<button>').html('<i class="fa fa-trash-o"></i>');
+    var deleteElem = $('<button>').html('<i class="fa fa-trash-o"></i>').addClass('delete-btn');
 
     $(deleteElem).click(function(){
       var id =  $(this).parent().attr('name');
