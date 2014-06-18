@@ -87,7 +87,14 @@ Twixingboard.prototype.renderSliders = function(){
 
 deleteTwixnote = function(twixnoteId){
   $that = this;
+  debugger;
+  for (i = 0; i < myTwixingboard.twixnotesArr.length; i++)
+  {
+    if (myTwixingboard.twixnotesArr[i].id == parseInt(twixnoteId)){
+      myTwixingboard.twixnotesArr.splice(i,1);
+    }
 
+  }
   $.ajax({
     url:'/twixingboards/' + getTwixingboardId() + '/delete/twixnotes',
     method: 'DELETE',
@@ -181,7 +188,7 @@ Twixingboard.prototype.searchTwixnote = function(search_term){
 };
 
 function addTwixnote(twixnote){
-
+  
   var twixWrapperEl = $('<div>')
           .addClass('two columns twixWrapper')
           .attr('name', twixnote.id);
@@ -232,6 +239,7 @@ var twixNameElem = $('<div>').attr("id", "twixid"+twixnote.id).html(twixnote.nam
     twixWrapperEl.append(deleteElem);
     twixWrapperEl.append(twixNameElem);
     $('.twixnotes_container').append(twixWrapperEl)
+
 };
 
 Twixingboard.prototype.twixnoteLimit = function(){

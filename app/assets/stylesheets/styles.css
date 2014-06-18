@@ -51,6 +51,10 @@ a:visited {
 margin-left: 31px;
 margin-top: 14px;
 }
+.footer {
+  position: absolute;
+  top: 285px;
+}
 
 .clearfix:after {
      visibility: hidden;
