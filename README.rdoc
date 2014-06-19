@@ -36,3 +36,32 @@ When the user comes back to the twingboard, Rails will build the page with their
 
 See my comments in the twixingboard SHOW view and the scripts. js files
 
+
+
+
+
+* Ruby version
+ruby 2.1.1p76
+
+* Rails version
+Rails 4.1.1
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+
+
+
+
+

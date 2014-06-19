@@ -343,6 +343,17 @@ $(function(){
   //   $('.twixnote_container').append(elem);
 
 
+function validateEmail(email){
+  var regex = /^\w+@\w+.com?$/
+  if (email = email.match(regex)) {
+    $('#user_email_error').hide();
+    return true;
+  } else {
+    $('#user_email_error').show();
+    return false;
+  }
+}
+
 
 
 
