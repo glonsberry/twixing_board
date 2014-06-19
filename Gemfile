@@ -28,7 +28,10 @@ gem 'spring'
 gem 'sorcery'
 gem 'skeleton-rails'
 gem 'jquery-ui-rails'
+
 gem "sad_panda"
+
+
 
 
 

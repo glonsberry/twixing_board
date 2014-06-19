@@ -1,38 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Twixingboard</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-</head>
-
-<body>
-  <hr> 
+<%= render '/header.html.erb' %>
 
   <div class="twixingboard_id" id="<%= @twixingboard.id %>"></div>
   <!--admittedly not secure-->
-  
 
-  <div class="results-container">
+  <div class="results-container clearfix">
   <!--   <div class="slider-container"> -->
-     <div class="twixnotes_container">
-      
+     <div class="twixnotes_container clearfix">
+
     </div>
   </div>
 
-  
-  
-  <hr>
 
+<div class="footer sixteen columns">
+  <hr class="bottom_line">
 
-
-  <form class="search_form">
+  <form class="search_form ten columns alpha">
     <input type="textfield" placeholder="twitter search..." class="search_term">
-    <button type="submit">Search</button>
+    <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
   </form>
+  <div class="message four columns omega"></div>
+</div>
 
-  
-</body>
-</html>
+

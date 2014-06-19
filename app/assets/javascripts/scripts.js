@@ -1,8 +1,9 @@
   context = new webkitAudioContext();
 
+  function test(val){
+    return val + 1;
+  }
 
-
-  // Create a source node from the buffer.
 
   function Twixnote(obj){
     this.id = obj.id;
@@ -11,33 +12,26 @@
     this.frequency = obj.frequency;
   }
 
-
-
   function Twixingboard(id){
     this.id = id;
     this.twixnotesArr = [];
   }
 
   function getTwixingboardId(){
-    //return window.location.pathname.split('/')[2];
     return $('.twixingboard_id').attr('id');
   }
 
-//This will save a twixnote to the database.  But you need a refresh to see it.
-//So you'l need to put a function in the success function to put
-//the twixnote on the screen.
+  Twixnote.prototype.saveTwixnote = function(){
+    $that = this;
 
-Twixnote.prototype.saveTwixnote = function(){
-  $that = this;
+    $.ajax({
+      url:'/twixingboards/' + getTwixingboardId() + '/twixnotes',
 
-  $.ajax({
-    url:'/twixingboards/' + getTwixingboardId() + '/twixnotes',
-
-    method: 'POST',
-    dataType: 'json',
-    data: { twixnote: { name: $that.name, frequency: $that.frequency }},
-    success: function(){
-      console.log("saved" + $that)
+      method: 'POST',
+      dataType: 'json',
+      data: { twixnote: { name: $that.name, frequency: $that.frequency }},
+      success: function(){
+        console.log("saved" + $that)
     }
   });
 };
@@ -56,13 +50,12 @@ Twixingboard.prototype.fetchTwixnotes = function(){
         twixnote = new Twixnote(data[i])
         $that.twixnotesArr.push(twixnote)
          twixnote.playSound();
-
       }
-
       $that.renderSliders();
     }
   })
 };
+
 Twixingboard.prototype.fetchTwixingboard = function(){
   $that = $this;
   $.ajax({
@@ -75,124 +68,58 @@ Twixingboard.prototype.fetchTwixingboard = function(){
       twixnote = new Twixnote(data[i])
       $that.twixnotesArr.push(twixnote)
        twixnote.playSound();
-
-    }
-
+      }
     $that.renderSliders();
-  }
-})
-
-
+    }
+  })
 };
-
-
 
 Twixingboard.prototype.renderSliders = function(){
   // $('.slider-container').html('');
   $('.twixnotes_container').html('');
+  that = this;
 
+  for (var i = 0; i < this.twixnotesArr.length; ++i ){
 
-
-  for (var i = 1; i < this.twixnotesArr.length; ++i ){
-    var twixWrapperEl = $('<div>').addClass('two columns twixWrapper')
-    this.twixnotesArr[i].playSound();
-    var twixNameElem = $('<div>').html(this.twixnotesArr[i].name);
-    var eachvar = i;
-    var deleteElem = $('<button>').html("<i class='fa fa-trash-o'></i>");
-    var gainNode = myTwixingboard.twixnotesArr[i].gainNode;
-    var $slider = undefined;
-    (function(gainNode){
-      $slider = $('<div>').addClass("slider-vertical"+i).slider({
-      orientation: "vertical",
-      range: "min",
-      min: 0,
-      max: 100,
-      value: 1,
-      slide: function(event, ui){
-          var volume = ui.value / 100;
-          gainNode.value = volume;
-          console.log(ui.value);
-      },
-     })
-      twixWrapperEl.append($slider);
-      twixWrapperEl.append(deleteElem);
-      twixWrapperEl.append(twixNameElem);
-      $('.twixnotes_container').append(twixWrapperEl)
-      
-    })(gainNode);
-
-
-
-
-
-    //var sliderElem = $('<div>').html("<input id='volume' type='range' min='0' max='2' step='0.05' value='0.0'>");
-
-    // var sliderElem =
-    //   $(function() {
-    // $( ".slider-container" ).slider({
-    //   orientation: "vertical",
-    //   range: "min",
-    //   min: 0,
-    //   max: 100,
-    //   value: 60,
-    //   slide: function( event, ui ) {
-    //     $( "#amount" ).val( ui.value );
-    //   }
-    // });
-    // $( "#amount" ).val( $( ".slider-container" ).slider( "value" ) );
-
-    //$('.slider-container').append(sliderElem);
-
+    addTwixnote(that.twixnotesArr[i]);
   }
 }
 
-
-Twixnote.prototype.deleteTwixnote = function(){
+deleteTwixnote = function(twixnoteId){
   $that = this;
 
+  for (i = 0; i < myTwixingboard.twixnotesArr.length; i++)
+  {
+    if (myTwixingboard.twixnotesArr[i].id == parseInt(twixnoteId)){
+      myTwixingboard.twixnotesArr.splice(i,1);
+    }
+
+  }
   $.ajax({
     url:'/twixingboards/' + getTwixingboardId() + '/delete/twixnotes',
     method: 'DELETE',
     dataType: 'json',
-    data: { twixnote: {id: $that.id, frequency: $that.frequency, name: $that.name }},
+    data: { twixnote: {id: twixnoteId }},
     success: function(){
 
       console.log("deleted")
+
     }
   });
 }
 
 Twixnote.prototype.playSound = function(){
-//     var convolver = context.createConvolver()
-//   function WhiteNoiseGenerated(callback) {
-//   // Generate a 5 second white noise buffer.
-//   var lengthInSamples = 5 * context.sampleRate;
-//   var buffer = context.createBuffer(1, lengthInSamples, context.sampleRate);
-//   var data = buffer.getChannelData(0);
-
-//   for (var i = 0; i < lengthInSamples; i++) {
-//     data[i] = ((Math.random() * 2) - 1);
-//   }
-
-//   // Create a source node from the buffer.
-//   this.node = context.createBufferSource();
-//   this.node.buffer = buffer;
-//   this.node.loop = true;
-//   this.node.start(0);
-// }
-//   var noiseBuffer = new WhiteNoiseGenerated();
-//     convolver.buffer = noiseBuffer;
-
+  var that = this;
   var oscillator = context.createOscillator();
   var gain = context.createGain();
   var filter = context.createBiquadFilter();
   filter.type = 0;
    if (this.frequency < 1){
-      var intTime = 6000 - (this.frequency * (Math.random() * 500))}
+      var intTime = 7000 - (this.frequency * (Math.random() * 1500))}
   else {var intTime = (1 / this.frequency) * 10000};
   oscillator.connect(gain);
       if (this.mood === "joy")
-        {var moodFreq = Math.random() * (300-150) + 150}
+        {var moodFreq = Math.random() * (400-100) + 100}
       else if (this.mood === "sadness")
         {var moodFreq = Math.random() * (450-251) + 251}
       else if (this.mood === "disgust")
@@ -208,103 +135,126 @@ Twixnote.prototype.playSound = function(){
   oscillator.frequency.value = moodFreq
 
   gain.connect(filter);
-  // convolver.connect(filter);
   filter.connect(context.destination)
   oscillator.start(0);
   gain.gain.value = 0; //change volume here
 
+  setInterval(function(intTime){
+    var now = context.currentTime;
+    $("#twixid"+that.id).animate({"border-radius":"80px", "height":"21px", "width":"97px", "opacity":"1"}, 100);
 
+    filter.frequency.value = 10000;
+  }, intTime );
+
+setInterval(function(intTime){
+    $("#twixid"+that.id).animate({"opacity":".9"}, 100);
+  }, intTime );
+  setInterval(function(intTime){
+    $("#twixid"+that.id).animate({"border-radius":"79px", "height":"20px", "width":"95px"}, 50);
+  }, intTime );
 
   setInterval(function(intTime){
     var now = context.currentTime;
-    // gain.gain.cancelScheduledValues( now );
-    // gain.gain.setValueAtTime(gain.gain.value, now);
-    // gain.gain.linearRampToValueAtTime(1 , now + 0.2);
-    // oscillator.connect(context.destination)
-        filter.frequency.value = 10000;
-  }, intTime);
-
-
-
-  setInterval(function(intTime){
-    var now = context.currentTime;
-    // gain.gain.cancelScheduledValues( now );
-    // gain.gain.setValueAtTime(gain.gain.value, now);
-    // gain.gain.linearRampToValueAtTime(0 , now + 0.2)
 
         filter.frequency.value = 0;
          }
-    ,  Math.random() * 30 );
+    ,  30 );
+
     gain.gain.value = 0; //change volume here
 
-  this.gainNode = gain.gain
-  return this.gainNode
-}
-
-
-// function newSoundObject(intTime, pitch){
-
-//   var oscillator = context.createOscillator();
-//   var gain = context.createGain();
-//   var intTime = intTime;
-//   oscillator.connect(gain);
-//   oscillator.frequency.value = pitch;
-
-//   gain.connect(context.destination);
-//   oscillator.start(0);
-//   gain.gain.value = .5;
-//   oscillator.disconnect(0);
-//   setInterval(function(intTime){
-//     var now = context.currentTime;
-//     // gain.gain.cancelScheduledValues( now );
-//     // gain.gain.setValueAtTime(gain.gain.value, now);
-//     // gain.gain.linearRampToValueAtTime(1 , now + 0.2);
-//     oscillator.connect(context.destination)
-//   }, intTime)
-//   setInterval(function(intTime){
-//     var now = context.currentTime;
-//     // gain.gain.cancelScheduledValues( now );
-//     // gain.gain.setValueAtTime(gain.gain.value, now);
-//     // gain.gain.linearRampToValueAtTime(0 , now + 0.2)
-//         oscillator.disconnect(0);
-//       }
-//     ,  intTime + 50 )
-
-// }
-
+    this.gainNode = gain.gain
+    return this.gainNode
+  }
 
 Twixingboard.prototype.searchTwixnote = function(search_term){
   $that = this;
+  if (this.twixnoteLimit()){
+     $('.message').html("You have reached maximum twixitude.  You must delete a slider before you add another one.");
 
-  $.ajax({
+  }
+  else{
+    $.ajax({
 
-    url:'/twixingboards/' + getTwixingboardId() + '/search',
-    method: 'GET',
-    dataType: 'json',
-    data: { search_term: search_term},
-    success: function(data){
-
-           twixnote = new Twixnote(data);
-           // pitch = Math.random() * 800
-           //  if (twixnote.frequency < 1){
-           //    var intTime = 6000 - (twixnote.frequency * (Math.random() * 500))}
-           //  else {var intTime = (1 / twixnote.frequency) * 10000};
-
-          // var soundObject = new newSoundObject(intTime, pitch);
-
-
-        //set volume to zero by default?
-
-        $that.twixnotesArr.push(twixnote);
-        $that.renderSliders();
-        return twixnote;
+      url:'/twixingboards/' + getTwixingboardId() + '/search',
+      method: 'GET',
+      dataType: 'json',
+      data: { search_term: search_term},
+      success: function(data){
+        twixnote = new Twixnote(data);
+        addTwixnote(twixnote);
+        myTwixingboard.twixnotesArr.push(twixnote);
       }
     });
-}
+  }
+};
+
+function addTwixnote(twixnote){
+
+  var twixWrapperEl = $('<div>')
+          .addClass('two columns twixWrapper')
+          .attr('name', twixnote.id);
+  twixnote.playSound();
+    var color = ""
+      if (twixnote.mood === "anger")
+        {color = '#75905a'}
+      else if (twixnote.mood === "sadness")
+        {color = '#79BD9A'}
+      else if (twixnote.mood === "disgust")
+        {color = '#A8DBA8'}
+      else if (twixnote.mood === "fear")
+        {color = '#3B8686'}
+      else if (twixnote.mood === "joy")
+        {color = '#0B486B'}
+      else if (twixnote.mood === "surprise")
+        {color = '#6eb1b4'};
+var twixNameElem = $('<div>').attr("id", "twixid"+twixnote.id).html(twixnote.name).css({"background-color": "#182233","color":"white","border-radius": "10px", "text-align": "center", "border":"2px solid", "border-color": color
+})
+    var deleteElem = $('<button>').html("<i class='fa fa-trash-o'></i>").addClass('delete-btn');
+
+    $(deleteElem).click(function(){
+      var id = $(this).parent().attr('name');
+      deleteTwixnote(id);
+      twixnote.gainNode.value = 0
+      $(this).parent().remove();
+
+    })
+
+    var gainNode = twixnote.gainNode;
+    var $slider = undefined;
+    (function(gainNode){
+      $slider = $('<div>').addClass("slider-vertical").slider({
+      orientation: "vertical",
+      range: "min",
+      min: 0,
+      max: 100,
+      value: gainNode.value * 100,
+      slide: function(event, ui){
+          var volume = ui.value / 100;
+          gainNode.value = volume;
+          saveVolume = ui.value;
+        },
+     })
+    })(gainNode);
+
+    twixWrapperEl.append($slider);
+    twixWrapperEl.append(deleteElem);
+    twixWrapperEl.append(twixNameElem);
+    $('.twixnotes_container').append(twixWrapperEl)
+
+};
+
+Twixingboard.prototype.twixnoteLimit = function(){
+  var limit = 8;
+  if (this.twixnotesArr.length >= 8) {
+    return true;
+  }
+  else{
+
+   return false
+  }
+};
 
 $(function(){
-//the code here is just to see it working on the page.  Change it however you want.
-
 
   var twixnoteArr = []
   myTwixingboard = new Twixingboard(1);
@@ -315,10 +265,9 @@ $(function(){
 
     myTwixingboard.searchTwixnote($('.search_term').val())
   })
-
-
 });
 
+<<<<<<< HEAD
 // for (var i = 0; i < myTwixingboard.twixnotesArr.length; ++i){
 //   $( ".create-slider" ).slider({
 //     orientation: "vertical",
@@ -354,6 +303,8 @@ function validateEmail(email){
   }
 }
 
+=======
+>>>>>>> ea3e94e9463aebb6c2720e50d70ca801243fa13e
 
 
 

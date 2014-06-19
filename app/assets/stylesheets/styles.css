@@ -1,15 +1,74 @@
 body {
   background-color: #164F57;
+  color: white;
+  font-family: 'Codystar', cursive;
+}
+
+form {
+  font-family: 'Codystar', cursive;
+}
+
+#email {
+font-family: 'Codystar', cursive;
+background-color: white;
+
+}
+
+#search_term {
+    font-family: 'Codystar', cursive;
+
+}
+.twixWrapper {
+  font-family: 'UnifrakturMaguntia', cursive;
+}
+.title{
   color: #D3D5CF;
-  font-family: 'Play', sans-serif;
+  font-family: 'Codystar', cursive;
+  text-align: right;
+}
+h2{
+  color: #D3D5CF;
+  font-family: 'UnifrakturMaguntia', cursive;
+
 }
 a {
+  font-family: 'UnifrakturMaguntia', cursive;
   text-decoration: none;
   color: #D3D5CF;
 
 }
 a:visited {
+  font-family: 'UnifrakturMaguntia', cursive;
   text-decoration: none;
   color: #D3D5CF;
 
 }
+.slider-vertical {
+  margin-left: 40px;
+}
+
+.delete-btn {
+margin-left: 31px;
+margin-top: 14px;
+}
+.footer {
+  position: absolute;
+  top: 285px;
+}
+
+.clearfix:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+     }
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */
+
+/*  font-family: 'Codystar', cursive;
+*/
