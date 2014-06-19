@@ -1,7 +1,7 @@
 
 
 Case Use of Twixingboard App:
-- Create sounds based on the mood and occurance of tweets.  It simulates a mixboarding in the fact you can adjust the volume of twixnotes (sounds).  The fun behind the app is to find tweets according to your liking as different searchs yield different results.
+- Create sounds based on the mood and occurrence frequency of tweets.  User can adjust the volume of twixnotes (sounds).  The app acts as a musical instrument that generates sound by the mass expression of thought.
 
 * Ruby version
 ruby 2.1.1p76
@@ -11,24 +11,29 @@ Rails 4.1.1
 
 * System dependencies
 
-Gems 
+Gems
 'sorcery' https://github.com/NoamB/sorcery
+
 'skeleton-rails' https://github.com/helios-technologies/skeleton-rails
+
 'jquery-ui-rails' https://github.com/joliss/jquery-ui-rails
+
 'sad_panda' https://github.com/mattThousand/sad_panda
+
 'twitter' https://github.com/sferik/twitter
+
 * Configuration
 
 * Database creation
 - The models for this application are:
 
-Twixers: have 1 email, 1 password, and 1 twixingboard.  
+Twixers: have 1 email, 1 password, and 1 twixingboard.
 Twixingboards: A Twixingboard belongs to a twixer and contains many twixnotes.
 
-Twixnote: Have a frequency (rate of occurance in a query to Twitter via the Twitter API), a mood (parsed by the sad panda gem and atrributes a negative or positive connotation this twixnote), name and id.  
+Twixnote: Have a frequency (rate of occurance in a query to Twitter via the Twitter API), a mood (parsed by the sad panda gem and atrributes a negative or positive connotation this twixnote), name and id.
 
 * Deployment instructions
-This application is meant to be run in a browser.
+This application runs in browsers compatible with the Web Audio API - most versions of Chrome and recent versions of Firefox, Opera, and Safari.
 
 
 
