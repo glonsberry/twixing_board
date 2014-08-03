@@ -35,7 +35,12 @@ Twixnote: Have a frequency (rate of occurance in a query to Twitter via the Twit
 * Deployment instructions
 This application runs in browsers compatible with the Web Audio API - most versions of Chrome and recent versions of Firefox, Opera, and Safari.
 
+##The Twitter Piece
 
-
-
-
+1. JavaScript creates an empty Twixnote object.
+2. The user enters a searh term.
+3. JavaScript packages the search term into a JSON GET request to the Twixnote model.
+4. Twixnote creates a client object with the Twitter credentials, and the client sends the search to Twitter.
+5. The client receives the JSON response from the client.  The text of the Tweets are passed through the SadPanda gem, which determines their mood.
+6. Attributes of the Twixnote object are updated with the frequency and mood of the tweets, and the Twixnote is able to play the sound.
+  
