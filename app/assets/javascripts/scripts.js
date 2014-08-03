@@ -267,6 +267,44 @@ $(function(){
   })
 });
 
+<<<<<<< HEAD
+// for (var i = 0; i < myTwixingboard.twixnotesArr.length; ++i){
+//   $( ".create-slider" ).slider({
+//     orientation: "vertical",
+//     range: "min",
+//     min: 0,
+//     max: 100,
+//     value: 0,
+
+      // slide: function( event, ui ) {
+      //   gainNode.gain.value = ui.value / 100;
+      // }
+    // });
+
+
+//   for (var i = 0; i < myTwixingboard.twixnotesArr; ++i){
+//     console.log(myTwixingboard.twixnotesArr[i])
+  // }
+  // arr = myTwixingboard.twixnotesArr;
+  // debugger;
+  // $.each(myTwixingboard.twixnotesArr, function(twixnote){
+  //   var elem = $('<div>').html(twixnote.name);
+  //   $('.twixnote_container').append(elem);
+
+
+function validateEmail(email){
+  var regex = /^\w+@\w+.com?$/
+  if (email = email.match(regex)) {
+    $('#user_email_error').hide();
+    return true;
+  } else {
+    $('#user_email_error').show();
+    return false;
+  }
+}
+
+=======
+>>>>>>> ea3e94e9463aebb6c2720e50d70ca801243fa13e
 
 
 

@@ -1,21 +1,21 @@
 body {
   background-color: #164F57;
   color: white;
-  font-family: 'UnifrakturMaguntia', cursive;
+  font-family: 'Codystar', cursive;
 }
 
 form {
-  font-family: 'UnifrakturMaguntia', cursive;
+  font-family: 'Codystar', cursive;
 }
 
 #email {
-font-family: 'UnifrakturMaguntia', cursive;
+font-family: 'Codystar', cursive;
 background-color: white;
 
 }
 
 #search_term {
-    font-family: 'UnifrakturMaguntia', cursive;
+    font-family: 'Codystar', cursive;
 
 }
 .twixWrapper {
@@ -23,7 +23,7 @@ background-color: white;
 }
 .title{
   color: #D3D5CF;
-  font-family: 'UnifrakturMaguntia', cursive;
+  font-family: 'Codystar', cursive;
   text-align: right;
 }
 h2{
